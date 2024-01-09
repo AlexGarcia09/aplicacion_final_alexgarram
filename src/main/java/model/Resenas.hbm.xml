@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 18 dic 2023 18:28:04 by Hibernate Tools 6.3.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="proyecto_peliculas" name="model.Resenas" optimistic-lock="none" table="resenas">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="model.Series" fetch="select" name="series">
+            <column name="id_serie"/>
+        </many-to-one>
+        <many-to-one class="model.Anime" fetch="select" name="anime">
+            <column name="id_anime"/>
+        </many-to-one>
+        <many-to-one class="model.Peliculas" fetch="select" name="peliculas">
+            <column name="id_pelicula" not-null="true" unique="true"/>
+        </many-to-one>
+        <property name="valoracionResena" type="int">
+            <column name="valoracion_resena" not-null="true"/>
+        </property>
+        <property name="comentarioResena" type="string">
+            <column length="300" name="comentario_resena" not-null="true"/>
+        </property>
+        <property name="fechaResena" type="date">
+            <column length="10" name="fecha_resena" not-null="true"/>
+        </property>
+        <property name="tipoResena" type="string">
+            <column length="9" name="tipo_resena"/>
+        </property>
+    </class>
+</hibernate-mapping>
