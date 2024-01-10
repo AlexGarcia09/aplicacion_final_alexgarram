@@ -19,9 +19,10 @@ public class registro extends javax.swing.JFrame {
     public registro() {
         initComponents();
         ImageIcon icono = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\fondo.jpg", 630, 800);
-
+        ImageIcon logo = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\logof.png", 120, 100);    
         // Establecer la imagen ajustada en el JLabel
         labelfondo.setIcon(icono);
+        labellogo.setIcon(logo);
     }
 
     /**
@@ -42,11 +43,12 @@ public class registro extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jPasswordField2 = new javax.swing.JPasswordField();
+        labellogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,7 +72,7 @@ public class registro extends javax.swing.JFrame {
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 332, 40));
+        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 343, 40));
 
         jLabel6.setBackground(new java.awt.Color(102, 102, 102));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -79,23 +81,25 @@ public class registro extends javax.swing.JFrame {
 
         jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 332, 40));
+        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 343, 40));
+        jTextField2.getAccessibleContext().setAccessibleName("");
 
         jLabel7.setBackground(new java.awt.Color(102, 102, 102));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Contraseña");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, -1, -1));
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel3.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 332, 40));
-
         jLabel8.setText("Ya tienes cuenta?");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 720, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
+        jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Registro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 560, 91, 37));
 
         jButton2.setForeground(new java.awt.Color(255, 51, 51));
@@ -108,9 +112,15 @@ public class registro extends javax.swing.JFrame {
         jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 710, 84, 31));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel3.setForeground(new java.awt.Color(255, 51, 51));
         jLabel3.setText("REGISTRO");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
+
+        jPasswordField2.setText("jPasswordField2");
+        jPanel3.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 343, 40));
+
+        labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logof.png"))); // NOI18N
+        jPanel3.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 120, 100));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(631, 0, 670, 800));
 
@@ -118,9 +128,23 @@ public class registro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+    abrirVentanaLogin();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+        private void abrirVentanaLogin() {
+        // Crea e inicializa el JFrame de Registro
+        login loginFrame = new login();
+
+        // Ajusta la posición de la ventana de registro según sea necesario
+        loginFrame.setLocationRelativeTo(this);
+
+        // Hace visible la ventana de registro
+        loginFrame.setVisible(true);
+        dispose();
+    }
     /**
      * @param args the command line arguments
      */
@@ -168,9 +192,10 @@ public class registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel labelfondo;
+    private javax.swing.JLabel labellogo;
     // End of variables declaration//GEN-END:variables
 }

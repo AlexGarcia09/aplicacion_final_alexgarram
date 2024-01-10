@@ -18,10 +18,12 @@ public class recordar extends javax.swing.JFrame {
      */
     public recordar() {
         initComponents();
-        ImageIcon icono = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\fondo.jpg", 630, 800);
+        ImageIcon fondo = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\fondo.jpg", 630, 800);
+        ImageIcon logo = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\logof.png", 120, 100);
 
         // Establecer la imagen ajustada en el JLabel
-        labelfondo.setIcon(icono);
+        labelfondo.setIcon(fondo);
+        labellogo.setIcon(logo);
     }
 
     /**
@@ -40,6 +42,7 @@ public class recordar extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        labellogo = new javax.swing.JLabel();
         Right = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         labelfondo = new javax.swing.JLabel();
@@ -51,7 +54,7 @@ public class recordar extends javax.swing.JFrame {
         Left.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
         jLabel1.setText("RECORDAR");
         Left.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
 
@@ -64,7 +67,7 @@ public class recordar extends javax.swing.JFrame {
         jTextField1.setForeground(new java.awt.Color(102, 102, 102));
         Left.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 343, 40));
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
+        jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Recordar");
@@ -82,29 +85,16 @@ public class recordar extends javax.swing.JFrame {
         });
         Left.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 710, 84, 31));
 
+        labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logof.png"))); // NOI18N
+        Left.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 120, 100));
+
         Right.setBackground(new java.awt.Color(0, 102, 102));
         Right.setPreferredSize(new java.awt.Dimension(400, 500));
+        Right.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Right.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 806, -1, -1));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
-        Right.setLayout(RightLayout);
-        RightLayout.setHorizontalGroup(
-            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RightLayout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(labelfondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        RightLayout.setVerticalGroup(
-            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RightLayout.createSequentialGroup()
-                .addComponent(labelfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        Right.add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 800));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,9 +125,19 @@ public class recordar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+    abrirVentanaLogin();
     }//GEN-LAST:event_jButton2ActionPerformed
+        private void abrirVentanaLogin() {
+        // Crea e inicializa el JFrame de Registro
+        login loginFrame = new login();
 
+        // Ajusta la posición de la ventana de registro según sea necesario
+        loginFrame.setLocationRelativeTo(this);
+
+        // Hace visible la ventana de registro
+        loginFrame.setVisible(true);
+        dispose();
+    }
     /**
      * @param args the command line arguments
      */
@@ -185,5 +185,6 @@ public class recordar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelfondo;
+    private javax.swing.JLabel labellogo;
     // End of variables declaration//GEN-END:variables
 }
