@@ -4,8 +4,10 @@
  */
 package view;
 
-import controller.ImageUtils;
+import controller.RecordarUtil;
+import controller.ajustarImagen;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,8 +20,8 @@ public class recordar extends javax.swing.JFrame {
      */
     public recordar() {
         initComponents();
-        ImageIcon fondo = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\fondo.jpg", 630, 800);
-        ImageIcon logo = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\logof.png", 120, 100);
+        ImageIcon fondo = ajustarImagen.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\fondo.jpg", 630, 800);
+        ImageIcon logo = ajustarImagen.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\logof.png", 120, 100);
 
         // Establecer la imagen ajustada en el JLabel
         labelfondo.setIcon(fondo);
@@ -38,7 +40,7 @@ public class recordar extends javax.swing.JFrame {
         Left = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -63,14 +65,19 @@ public class recordar extends javax.swing.JFrame {
         jLabel2.setText("Email");
         Left.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        Left.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 343, 40));
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(102, 102, 102));
+        Left.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 343, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 51, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Recordar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         Left.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 93, 36));
 
         jLabel4.setText("Volver al login");
@@ -127,6 +134,28 @@ public class recordar extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     abrirVentanaLogin();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     // Obtener el correo electrónico del campo de texto
+    String destinatario = txtEmail.getText();
+
+    // Verificar si el campo de correo electrónico está vacío
+    if (destinatario.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese su correo electrónico.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Obtener la contraseña encriptada
+    String contrasenaEncriptada = RecordarUtil.obtenerContrasenaPorCorreo(destinatario);
+
+    if (contrasenaEncriptada != null) {
+        // Enviar la nueva contraseña por correo electrónico
+        RecordarUtil.enviarCorreo(destinatario, contrasenaEncriptada);
+        JOptionPane.showMessageDialog(this, "Se ha enviado un correo electrónico con su contraseña.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, "No se encontró la contraseña para el correo proporcionado.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
         private void abrirVentanaLogin() {
         // Crea e inicializa el JFrame de Registro
         login loginFrame = new login();
@@ -183,8 +212,8 @@ public class recordar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labellogo;
+    private javax.swing.JTextField txtEmail;
     // End of variables declaration//GEN-END:variables
 }
