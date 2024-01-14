@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.ImageUtils;
+import controller.ajustarImagen;
 import java.awt.Color;
 import java.awt.Point;
 import javax.swing.ImageIcon;
@@ -23,8 +23,8 @@ public class SplashScreen extends javax.swing.JDialog {
     public SplashScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        ImageIcon icono = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\fondo.jpg", 1300, 800);
-        ImageIcon logo = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\logof.png", 240, 200);    
+        ImageIcon icono = ajustarImagen.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\fondo.jpg", 1300, 800);
+        ImageIcon logo = ajustarImagen.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\logof.png", 240, 200);    
         // Establecer la imagen ajustada en el JLabel
         labelfondo.setIcon(icono);
         labellogo.setIcon(logo);
@@ -164,7 +164,7 @@ private void doTask(String taskName, int progress) throws Exception {
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
+         com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 SplashScreen dialog = new SplashScreen(new javax.swing.JFrame(), true);
