@@ -4,22 +4,24 @@
  */
 package view;
 
-import controller.ImageUtils;
+import controller.ajustarImagen;
 import javax.swing.ImageIcon;
-
+import controller.RegistroUtil;
+import javax.swing.JOptionPane;
+import org.jasypt.util.text.AES256TextEncryptor;
 /**
  *
  * @author alexg
  */
-public class registro extends javax.swing.JFrame {
 
+public class registro extends javax.swing.JFrame {
     /**
      * Creates new form signup
      */
     public registro() {
         initComponents();
-        ImageIcon icono = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\fondo.jpg", 630, 800);
-        ImageIcon logo = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\logof.png", 120, 100);    
+        ImageIcon icono = ajustarImagen.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\fondo.jpg", 630, 800);
+        ImageIcon logo = ajustarImagen.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\logof.png", 120, 100);    
         // Establecer la imagen ajustada en el JLabel
         labelfondo.setIcon(icono);
         labellogo.setIcon(logo);
@@ -39,15 +41,15 @@ public class registro extends javax.swing.JFrame {
         labelfondo = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        txtPasswrd = new javax.swing.JPasswordField();
         labellogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,19 +72,19 @@ public class registro extends javax.swing.JFrame {
         jLabel5.setText("Usuario");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 343, 40));
+        txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel3.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 343, 40));
 
         jLabel6.setBackground(new java.awt.Color(102, 102, 102));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Email");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 343, 40));
-        jTextField2.getAccessibleContext().setAccessibleName("");
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel3.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 343, 40));
+        txtEmail.getAccessibleContext().setAccessibleName("");
 
         jLabel7.setBackground(new java.awt.Color(102, 102, 102));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -116,8 +118,8 @@ public class registro extends javax.swing.JFrame {
         jLabel3.setText("REGISTRO");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
 
-        jPasswordField2.setText("jPasswordField2");
-        jPanel3.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 343, 40));
+        txtPasswrd.setText("jPasswordField2");
+        jPanel3.add(txtPasswrd, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 343, 40));
 
         labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logof.png"))); // NOI18N
         jPanel3.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 120, 100));
@@ -132,7 +134,32 @@ public class registro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+         String nombreUsuario = txtUsuario.getText();
+        String email = txtEmail.getText();
+        String contrasena = new String(txtPasswrd.getPassword());
+
+        // Verifica si los campos no están vacíos
+        if (nombreUsuario.isEmpty() || email.isEmpty() || contrasena.isEmpty()) {
+            // Manejo de error: Campos vacíos
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Encripta la contraseña antes de guardarla usando Jasypt con AES256TextEncryptor
+        AES256TextEncryptor encryptor = new AES256TextEncryptor();
+        encryptor.setPassword("gfdasdfsghfdtert");  // Utiliza una clave secreta única, no la contraseña real
+        String encryptedPassword = encryptor.encrypt(contrasena);
+
+        // Intenta registrar el usuario utilizando RegistrarUtil
+        boolean registroExitoso = RegistroUtil.registrarUsuario(nombreUsuario, email, encryptedPassword);
+
+        if (registroExitoso) {
+            // Manejo de éxito: Registro exitoso
+            JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            // Manejo de error: Registro fallido
+            JOptionPane.showMessageDialog(this, "Error al registrar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
         private void abrirVentanaLogin() {
         // Crea e inicializa el JFrame de Registro
@@ -192,10 +219,10 @@ public class registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labellogo;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JPasswordField txtPasswrd;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

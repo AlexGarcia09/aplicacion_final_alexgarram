@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 public class NewClass {
     public static void main(String[] args) {
         // Configurar Hibernate
-        Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
+        Configuration configuration = new Configuration().configure();
         SessionFactory sessionFactory = configuration.buildSessionFactory();
 
         // Abrir una sesión de Hibernate
@@ -17,9 +17,9 @@ public class NewClass {
 
             // Crear un nuevo usuario
             Usuarios nuevoUsuario = new Usuarios();
-            nuevoUsuario.setNombre("NombreUsuario");
+            nuevoUsuario.setNombre("Alex");
             nuevoUsuario.setContrasena("Contraseña123");
-            nuevoUsuario.setEmail("correo@example.com");
+            nuevoUsuario.setEmail("byalexx09@gmail.com");
 
             // Guardar el nuevo usuario en la base de datos
             session.save(nuevoUsuario);

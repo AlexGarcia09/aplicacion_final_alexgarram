@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class ImageUtils {
+public class ajustarImagen {
 
     public static ImageIcon cargarYAjustarImagen(String ruta, int ancho, int alto) {
         try {

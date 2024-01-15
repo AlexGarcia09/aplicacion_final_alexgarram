@@ -1,8 +1,10 @@
 
 package view;
 
-import controller.ImageUtils;
+import controller.ajustarImagen;
+import controller.loginUtil;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 
 public class login extends javax.swing.JFrame {
@@ -10,8 +12,8 @@ public class login extends javax.swing.JFrame {
   
     public login() {
         initComponents();
-                ImageIcon icono = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\fondo.jpg", 630, 800);
-                ImageIcon logo = ImageUtils.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\logof.png", 120, 100);    
+                ImageIcon icono = ajustarImagen.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\fondo.jpg", 630, 800);
+                ImageIcon logo = ajustarImagen.cargarYAjustarImagen("C:\\Users\\alexg\\Desktop\\Aplicacion_final\\src\\main\\resources\\img\\logof.png", 120, 100);    
         // Establecer la imagen ajustada en el JLabel
         labelfondo.setIcon(icono);
         labellogo.setIcon(logo);
@@ -29,12 +31,12 @@ public class login extends javax.swing.JFrame {
         Left = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        txtPasswrd = new javax.swing.JPasswordField();
         labellogo = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -88,9 +90,9 @@ public class login extends javax.swing.JFrame {
         jLabel2.setText("Email");
         Left.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        Left.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 343, 40));
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(102, 102, 102));
+        Left.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 343, 40));
 
         jLabel3.setBackground(new java.awt.Color(102, 102, 102));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -101,6 +103,11 @@ public class login extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         Left.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 93, 36));
 
         jLabel4.setText("No tienes cuenta?");
@@ -116,8 +123,8 @@ public class login extends javax.swing.JFrame {
         });
         Left.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 710, -1, -1));
 
-        jPasswordField2.setText("jPasswordField2");
-        Left.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 343, 40));
+        txtPasswrd.setText("jPasswordField2");
+        Left.add(txtPasswrd, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 343, 40));
 
         labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logof.png"))); // NOI18N
         Left.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 120, 100));
@@ -151,6 +158,24 @@ public class login extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         abrirVentanaRecordar();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+   String correo = txtEmail.getText();
+    String contrasena = new String(txtPasswrd.getPassword());
+
+    if (loginUtil.autenticarUsuario(correo, contrasena)) {
+        // El inicio de sesión fue exitoso
+        JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        // Accede al usuario actual desde LoginUtil y guárdalo en una variable de sesión
+        String usuarioActual = loginUtil.getUsuarioActual();
+        // Ahora puedes hacer lo que quieras con el usuario actual, por ejemplo, pasarlo a la siguiente ventana
+        abrirVentanaPrincipal(usuarioActual);
+    } else {
+        // Inicio de sesión fallido
+        JOptionPane.showMessageDialog(this, "Inicio de sesión fallido. Verifica tu correo y contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void abrirVentanaRegistro() {
         // Crea e inicializa el JFrame de Registro
         registro registroFrame = new registro();
@@ -160,6 +185,17 @@ public class login extends javax.swing.JFrame {
 
         // Hace visible la ventana de registro
         registroFrame.setVisible(true);
+        dispose();
+    }
+    private void abrirVentanaPrincipal(String usuarioActual) {
+        // Crea e inicializa el JFrame de Registro
+        Principal principalFrame = new Principal();
+
+        // Ajusta la posición de la ventana de registro según sea necesario
+        principalFrame.setLocationRelativeTo(this);
+
+        // Hace visible la ventana de registro
+        principalFrame.setVisible(true);
         dispose();
     }
     private void abrirVentanaRecordar() {
@@ -222,9 +258,9 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labellogo;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JPasswordField txtPasswrd;
     // End of variables declaration//GEN-END:variables
 }
