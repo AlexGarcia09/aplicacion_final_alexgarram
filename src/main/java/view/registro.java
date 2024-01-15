@@ -138,37 +138,32 @@ public class registro extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String contrasena = new String(txtPasswrd.getPassword());
 
-        // Verifica si los campos no están vacíos
+
         if (nombreUsuario.isEmpty() || email.isEmpty() || contrasena.isEmpty()) {
-            // Manejo de error: Campos vacíos
+
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Encripta la contraseña antes de guardarla usando Jasypt con AES256TextEncryptor
+
         AES256TextEncryptor encryptor = new AES256TextEncryptor();
-        encryptor.setPassword("gfdasdfsghfdtert");  // Utiliza una clave secreta única, no la contraseña real
+        encryptor.setPassword("gfdasdfsghfdtert"); 
         String encryptedPassword = encryptor.encrypt(contrasena);
 
-        // Intenta registrar el usuario utilizando RegistrarUtil
         boolean registroExitoso = RegistroUtil.registrarUsuario(nombreUsuario, email, encryptedPassword);
 
         if (registroExitoso) {
-            // Manejo de éxito: Registro exitoso
             JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            // Manejo de error: Registro fallido
             JOptionPane.showMessageDialog(this, "Error al registrar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
         private void abrirVentanaLogin() {
-        // Crea e inicializa el JFrame de Registro
+            
         login loginFrame = new login();
 
-        // Ajusta la posición de la ventana de registro según sea necesario
         loginFrame.setLocationRelativeTo(this);
 
-        // Hace visible la ventana de registro
         loginFrame.setVisible(true);
         dispose();
     }
