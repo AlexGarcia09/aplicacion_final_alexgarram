@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mycompany</groupId>
+    <artifactId>Aplicacion_final</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <exec.mainClass>com.mycompany.aplicacion_final.Aplicacion_final</exec.mainClass>
+    </properties>
+
+    <dependencies>
+        <!-- Dependencia de Hibernate Core -->
+       <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>5.4.24.Final</version>
+        </dependency>
+
+        <!-- Dependencia del conector de la base de datos (Ejemplo: MySQL) -->
+            <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.47</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE190</version>
+        </dependency>
+                <dependency>
+            <groupId>com.formdev</groupId>
+                <artifactId>flatlaf</artifactId>
+            <version>3.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+                <artifactId>flatlaf-intellij-themes</artifactId>
+            <version>3.2.5</version>
+        </dependency>
+                <dependency>
+                        <groupId>com.formdev</groupId>
+                        <artifactId>flatlaf-extras</artifactId>
+                        <version>3.2.5</version>
+                        <type>jar</type>
+                </dependency>
+                        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+
+    </dependencies>
+       
+    
+</project>
