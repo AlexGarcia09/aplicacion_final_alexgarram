@@ -6,9 +6,7 @@ package view;
 
 import controller.InsertarSeriesUtil;
 import controller.OptionPane;
-import controller.ajustarImagen;
 import controller.loginUtil;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,8 +21,6 @@ public class panelInsertarSeries extends javax.swing.JPanel {
     public panelInsertarSeries() {
         initComponents();
         
-        ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 110, 100);    
-        lbllogo.setIcon(logo);
     }
 
     /**
@@ -50,7 +46,6 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         txtareaResumen = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        lbllogo = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -101,9 +96,6 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 640, 160, 40));
 
-        lbllogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
-        jPanel1.add(lbllogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 100));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,7 +140,6 @@ public class panelInsertarSeries extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbllogo;
     private javax.swing.JTextField txtDirector;
     private javax.swing.JTextField txtGenero;
     private javax.swing.JTextField txtSalida;

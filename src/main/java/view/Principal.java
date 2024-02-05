@@ -144,11 +144,6 @@ public class Principal extends javax.swing.JFrame {
         botonAnadir.setForeground(new java.awt.Color(255, 51, 51));
         botonAnadir.setText("Añadir");
         botonAnadir.setBorder(null);
-        botonAnadir.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                botonAnadirStateChanged(evt);
-            }
-        });
         botonAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAnadirActionPerformed(evt);
@@ -191,6 +186,11 @@ public class Principal extends javax.swing.JFrame {
         botonSesion.setForeground(new java.awt.Color(255, 51, 51));
         botonSesion.setText("Cerrar sesion");
         botonSesion.setBorder(null);
+        botonSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSesionActionPerformed(evt);
+            }
+        });
         jPanel2.add(botonSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 760, 217, 30));
 
         jPanel5.setBackground(new java.awt.Color(255, 51, 51));
@@ -214,7 +214,20 @@ public class Principal extends javax.swing.JFrame {
         listarPeliculas.setLocation(0,0);
         
         llamarpanel(listarPeliculas);
-        }
+     }else if(botonSeries.isSelected()){
+        ListarSeries listarSeries = new ListarSeries();
+        listarSeries.setSize(1144, 797);
+        listarSeries.setLocation(0,0);
+        
+        llamarpanel(listarSeries);
+         
+     }else if(botonAnime.isSelected()){
+         ListarAnime listarAnime = new ListarAnime();
+        listarAnime.setSize(1144, 797);
+        listarAnime.setLocation(0,0);
+        
+        llamarpanel(listarAnime);
+     }
     }//GEN-LAST:event_botonListadoActionPerformed
 
     private void botonSeriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeriesActionPerformed
@@ -227,6 +240,14 @@ public class Principal extends javax.swing.JFrame {
         insertarSeries.setLocation(0,0);
         
         llamarpanel(insertarSeries);
+        }else if(botonListado.isSelected()){
+         ListarSeries listarSeries = new ListarSeries();
+        listarSeries.setSize(1144, 797);
+        listarSeries.setLocation(0,0);
+        
+        llamarpanel(listarSeries); 
+        }else {
+            
         }
     }//GEN-LAST:event_botonSeriesActionPerformed
 
@@ -258,22 +279,60 @@ public class Principal extends javax.swing.JFrame {
         insertarAnime.setLocation(0,0);
         
         llamarpanel(insertarAnime);
+        }else if (botonListado.isSelected()){
+        
+         ListarAnime listarAnime = new ListarAnime();
+        listarAnime.setSize(1144, 797);
+        listarAnime.setLocation(0,0);
+        
+        llamarpanel(listarAnime);
         }
     }//GEN-LAST:event_botonAnimeActionPerformed
 
     private void botonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirActionPerformed
-      
+      if (botonPeliculas.isSelected()){
+        
+        PanelInsertarPeliculas insertarPeliculas = new PanelInsertarPeliculas();
+        insertarPeliculas.setSize(1144, 797);
+        insertarPeliculas.setLocation(0,0);
+        
+        llamarpanel(insertarPeliculas);
+     }else if(botonSeries.isSelected()){
+        panelInsertarSeries insertarSeries = new panelInsertarSeries();
+        insertarSeries.setSize(1144, 797);
+        insertarSeries.setLocation(0,0);
+        
+        llamarpanel(insertarSeries);
+         
+     }else if(botonAnime.isSelected()){
+         PanelInsertarAnime insertarAnime = new PanelInsertarAnime();
+        insertarAnime.setSize(1144, 797);
+        insertarAnime.setLocation(0,0);
+        
+        llamarpanel(insertarAnime);
+     }
     }//GEN-LAST:event_botonAnadirActionPerformed
 
     private void botonResenasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonResenasActionPerformed
       
     }//GEN-LAST:event_botonResenasActionPerformed
 
-    private void botonAnadirStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_botonAnadirStateChanged
-          
-    }//GEN-LAST:event_botonAnadirStateChanged
+    private void botonSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSesionActionPerformed
+    abrirVentanaLogin();
+    loginUtil login = new loginUtil();
+    login.cerrarsesion();
+    }//GEN-LAST:event_botonSesionActionPerformed
 
-     
+        private void abrirVentanaLogin() {
+            
+        login loginFrame = new login();
+
+        loginFrame.setLocationRelativeTo(this);
+
+        loginFrame.setVisible(true);
+        dispose();
+        
+    }
     /**
      * @param args the command line arguments
      */

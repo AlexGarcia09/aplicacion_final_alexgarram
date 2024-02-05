@@ -44,5 +44,11 @@ public class loginUtil {
         } finally {
             session.close();
         }
+     
     }
+    public void cerrarsesion(){
+        
+        idUsuarioActual = 0;
+    
+}
 }

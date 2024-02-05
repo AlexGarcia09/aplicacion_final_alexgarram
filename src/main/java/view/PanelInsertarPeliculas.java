@@ -6,10 +6,7 @@ package view;
 
 import controller.InsertarPeliculasUtil;
 import controller.OptionPane;
-import controller.ajustarImagen;
 import controller.loginUtil;
-import java.util.Date;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,9 +21,6 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
     public PanelInsertarPeliculas() {
         initComponents();
         
-        ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 110, 100);    
-        lbllogo.setIcon(logo);
-         
          
     }
 
@@ -53,7 +47,6 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
         txtAreaResumen = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        lbllogo = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -104,9 +97,6 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 640, 160, 40));
 
-        lbllogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
-        jPanel1.add(lbllogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 100));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,24 +110,24 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String titulo = txtTitulo.getText();
-String director = txtDirector.getText();
-String resumen = txtAreaResumen.getText();
-String genero = txtGenero.getText();
-String fecha = txtFecha.getText();
+    String titulo = txtTitulo.getText();
+    String director = txtDirector.getText();
+    String resumen = txtAreaResumen.getText();
+    String genero = txtGenero.getText();
+    String fecha = txtFecha.getText();
 
-    OptionPane optionPane = new OptionPane();
-    optionPane.colorOptionpane();
+        OptionPane optionPane = new OptionPane();
+        optionPane.colorOptionpane();
 
-int idUsuario = loginUtil.getIdUsuarioActual();
+    int idUsuario = loginUtil.getIdUsuarioActual();
 
-if (idUsuario != 0) {
-    InsertarPeliculasUtil insertarUtil = new InsertarPeliculasUtil();
-    insertarUtil.insertarPelicula(idUsuario, titulo, director, resumen, fecha, genero);
-    JOptionPane.showMessageDialog(this, "Película insertada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-} else {
-    JOptionPane.showMessageDialog(this, "Inicio de sesión fallido. Verifica tu correo y contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
-}
+    if (idUsuario != 0) {
+        InsertarPeliculasUtil insertarUtil = new InsertarPeliculasUtil();
+        insertarUtil.insertarPelicula(idUsuario, titulo, director, resumen, fecha, genero);
+        JOptionPane.showMessageDialog(this, "Película insertada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, "Error al insertal la película", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -151,7 +141,6 @@ if (idUsuario != 0) {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbllogo;
     private javax.swing.JTextArea txtAreaResumen;
     private javax.swing.JTextField txtDirector;
     private javax.swing.JTextField txtFecha;

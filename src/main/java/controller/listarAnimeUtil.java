@@ -32,9 +32,9 @@ public class listarAnimeUtil {
         PanelAnimes.setLayout(new BoxLayout(PanelAnimes, BoxLayout.Y_AXIS));
 
         // Agregar un PanelPeliculas por cada película
-        for (Anime Anime : anime) {
+        for (Anime animes : anime) {
             PanelAnimes panelAnimes = new PanelAnimes();
-            llenarPanelConAnime(panelAnimes, Anime);
+            llenarPanelConAnime(panelAnimes, animes);
             PanelAnimes.add(panelAnimes);
             jpanel.add(panelAnimes);
         }

@@ -5,6 +5,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.OptionPane;
 import controller.ajustarImagen;
 import controller.loginUtil;
+import java.awt.Color;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ public class login extends javax.swing.JFrame {
   
     public login() {
         initComponents();
+       btnRecordar.setBackground(Color.white);
+       btnRegistro.setBackground(Color.white);
                 ImageIcon icono = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\fondo.jpg", 630, 800);
                 ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 120, 100);    
         labelfondo.setIcon(icono);
@@ -45,10 +48,10 @@ public class login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnRegistro = new javax.swing.JButton();
         txtPasswrd = new javax.swing.JPasswordField();
         labellogo = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnRecordar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
@@ -135,18 +138,18 @@ public class login extends javax.swing.JFrame {
         jLabel4.setText("No tienes cuenta?");
         Left.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 760, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 51, 51));
-        jButton2.setText("Registro");
-        jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegistro.setForeground(new java.awt.Color(255, 51, 51));
+        btnRegistro.setText("Registro");
+        btnRegistro.setBorder(null);
+        btnRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnRegistroActionPerformed(evt);
             }
         });
-        Left.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 755, 90, 30));
+        Left.add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 755, 90, 30));
 
         txtPasswrd.setText("jPasswordField2");
         Left.add(txtPasswrd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 350, 40));
@@ -154,18 +157,18 @@ public class login extends javax.swing.JFrame {
         labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
         Left.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 120, 100));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 51, 51));
-        jButton3.setText("Recordar");
-        jButton3.setBorder(null);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnRecordar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRecordar.setForeground(new java.awt.Color(255, 51, 51));
+        btnRecordar.setText("Recordar");
+        btnRecordar.setBorder(null);
+        btnRecordar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRecordar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnRecordar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnRecordarActionPerformed(evt);
             }
         });
-        Left.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 465, 90, 30));
+        Left.add(btnRecordar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 465, 90, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Has olvidado la contraseña?");
@@ -192,14 +195,14 @@ public class login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
         abrirVentanaRegistro();
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnRegistroActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnRecordarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecordarActionPerformed
         abrirVentanaRecordar();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnRecordarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     String correo = txtEmail.getText();
@@ -237,6 +240,7 @@ public class login extends javax.swing.JFrame {
 
         registroFrame.setVisible(true);
         dispose();
+        
     }
     private void abrirVentanaPrincipal(int usuarioActual) {
 
@@ -247,6 +251,7 @@ public class login extends javax.swing.JFrame {
         principalFrame.setVisible(true);
         dispose();
     }
+    
     private void abrirVentanaRecordar() {
 
         recordar recordarFrame = new recordar();
@@ -296,9 +301,9 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel Left;
     private javax.swing.JPanel Right;
     private javax.swing.JToggleButton botonVerpass;
+    private javax.swing.JButton btnRecordar;
+    private javax.swing.JButton btnRegistro;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

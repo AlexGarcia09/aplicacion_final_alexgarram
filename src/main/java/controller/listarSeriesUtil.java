@@ -47,12 +47,13 @@ public class listarSeriesUtil {
         PanelSeries.setLayout(new BoxLayout(PanelSeries, BoxLayout.Y_AXIS));
 
 
-        for (Series Series : series) {
+        for (Series serie : series) {
             PanelSeries panelseries = new PanelSeries();
-            llenarPanelConSerie(panelseries, Series);
-            panelseries.add(panelseries);
+            llenarPanelConSerie(panelseries, serie);
+            PanelSeries.add(panelseries);
             jpanel.add(panelseries);
         }
+        
 
         // Crear JScrollPane y agregar el panel de películas
         JScrollPane jScrollPane = new JScrollPane(PanelSeries);

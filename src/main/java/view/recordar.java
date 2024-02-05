@@ -6,6 +6,7 @@ package view;
 
 import controller.RecordarUtil;
 import controller.ajustarImagen;
+import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -20,6 +21,8 @@ public class recordar extends javax.swing.JFrame {
      */
     public recordar() {
         initComponents();
+        
+        btnLogin.setBackground(Color.WHITE);
         ImageIcon fondo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\fondo.jpg", 630, 800);
         ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 120, 100);
 
@@ -42,7 +45,7 @@ public class recordar extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         labellogo = new javax.swing.JLabel();
         Right = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -84,18 +87,18 @@ public class recordar extends javax.swing.JFrame {
         jLabel4.setText("Volver al login");
         Left.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 760, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 51, 51));
-        jButton2.setText("Login");
-        jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 51, 51));
+        btnLogin.setText("Login");
+        btnLogin.setBorder(null);
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        Left.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 755, 84, 31));
+        Left.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 755, 84, 31));
 
         labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
         Left.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 120, 100));
@@ -136,9 +139,9 @@ public class recordar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
     abrirVentanaLogin();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     
@@ -207,8 +210,8 @@ public class recordar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Left;
     private javax.swing.JPanel Right;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

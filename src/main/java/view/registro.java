@@ -8,6 +8,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.ajustarImagen;
 import javax.swing.ImageIcon;
 import controller.RegistroUtil;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import org.jasypt.util.text.AES256TextEncryptor;
 /**
@@ -21,6 +22,7 @@ public class registro extends javax.swing.JFrame {
      */
     public registro() {
         initComponents();
+        btnLogin.setBackground(Color.WHITE);
         ImageIcon icono = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\fondo.jpg", 630, 800);
         ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 120, 100);    
         // Establecer la imagen ajustada en el JLabel
@@ -52,7 +54,7 @@ public class registro extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtPasswrd = new javax.swing.JPasswordField();
         labellogo = new javax.swing.JLabel();
@@ -132,18 +134,18 @@ public class registro extends javax.swing.JFrame {
         });
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 670, 91, 37));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 51, 51));
-        jButton2.setText("Login");
-        jButton2.setBorder(null);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 51, 51));
+        btnLogin.setText("Login");
+        btnLogin.setBorder(null);
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 755, 70, 31));
+        jPanel3.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 755, 70, 31));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 51, 51));
@@ -169,9 +171,9 @@ public class registro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
     abrirVentanaLogin();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String nombreUsuario = txtUsuario.getText();
@@ -274,8 +276,8 @@ public class registro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botonVerpass;
     private javax.swing.JToggleButton botonVerpassRep;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
