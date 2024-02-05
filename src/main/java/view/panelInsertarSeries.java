@@ -4,8 +4,12 @@
  */
 package view;
 
+import controller.InsertarSeriesUtil;
+import controller.OptionPane;
 import controller.ajustarImagen;
+import controller.loginUtil;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,12 +42,12 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtSalida = new javax.swing.JTextField();
+        txtDirector = new javax.swing.JTextField();
+        txtTitulo = new javax.swing.JTextField();
+        txtGenero = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtareaResumen = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         lbllogo = new javax.swing.JLabel();
@@ -56,7 +60,7 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 160, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel2.setText("Titulo de la pelicula");
+        jLabel2.setText("Titulo de la serie");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 170, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -70,14 +74,14 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel5.setText("Resumen");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 470, 86, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 500, 30));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 500, 30));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 500, 30));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
+        jPanel1.add(txtSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 500, 30));
+        jPanel1.add(txtDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 500, 30));
+        jPanel1.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 500, 30));
+        jPanel1.add(txtGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtareaResumen.setColumns(20);
+        txtareaResumen.setRows(5);
+        jScrollPane1.setViewportView(txtareaResumen);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 500, 500, 180));
 
@@ -90,6 +94,11 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Añadir");
         jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 640, 160, 40));
 
         lbllogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
@@ -107,6 +116,27 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     String titulo = txtTitulo.getText();
+    String director = txtDirector.getText();
+    String resumen = txtareaResumen.getText();
+    String genero = txtGenero.getText();
+    String fecha = txtSalida.getText();
+
+        OptionPane optionPane = new OptionPane();
+        optionPane.colorOptionpane();
+
+    int idUsuario = loginUtil.getIdUsuarioActual();
+
+    if (idUsuario != 0) {
+        InsertarSeriesUtil insertarUtil = new InsertarSeriesUtil();
+        insertarUtil.insertarSerie(idUsuario, titulo, director, resumen, fecha, genero);
+        JOptionPane.showMessageDialog(this, "Serie insertada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, "Error al insertar la serie", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -118,11 +148,11 @@ public class panelInsertarSeries extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel lbllogo;
+    private javax.swing.JTextField txtDirector;
+    private javax.swing.JTextField txtGenero;
+    private javax.swing.JTextField txtSalida;
+    private javax.swing.JTextField txtTitulo;
+    private javax.swing.JTextArea txtareaResumen;
     // End of variables declaration//GEN-END:variables
 }
