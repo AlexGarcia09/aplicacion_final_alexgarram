@@ -4,16 +4,8 @@
  */
 package view;
 
-import controller.HibernateUtil;
-import java.awt.BorderLayout;
-import java.util.List;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import model.Series;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import controller.listarSeriesUtil;
+
 
 /**
  *
@@ -24,61 +16,12 @@ public class ListarSeries extends javax.swing.JPanel {
     /**
      * Creates new form ListarPeliculas
      */
+    listarSeriesUtil series = new listarSeriesUtil();
     public ListarSeries() {
         initComponents();
-          mostrarSeries();
+          series.mostrarSeries(jPanel1);
           
     }
-    
-     private void mostrarSeries() {
-        // Obtener la lista de películas desde la base de datos
-        List<Series> series = obtenerSeriesDesdeBD();
-
-        // Crear el panel principal que contiene los paneles de películas
-        JPanel PanelSeries = new JPanel();
-        PanelSeries.setLayout(new BoxLayout(PanelSeries, BoxLayout.Y_AXIS));
-
-
-        for (Series Series : series) {
-            PanelSeries panelseries = new PanelSeries();
-            llenarPanelConSerie(panelseries, Series);
-            panelseries.add(panelseries);
-            jPanel1.add(panelseries);
-        }
-
-        // Crear JScrollPane y agregar el panel de películas
-        JScrollPane jScrollPane = new JScrollPane(PanelSeries);
-
-        // Agregar el JScrollPane al panel principal
-        add(jScrollPane, BorderLayout.CENTER);
-    }
-
-    private List<Series> obtenerSeriesDesdeBD() {
-        // Recuperar datos de la base de datos usando HibernateUtil
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-
-        // Usar una consulta HQL para obtener las películas
-        Query<Series> query = session.createQuery("FROM Series", Series.class);
-        List<Series> series = query.getResultList();
-        System.out.println(series.size());
-
-        // Cerrar la sesión de Hibernate
-        session.close();
-
-        return series;
-    }
-
-    private void llenarPanelConSerie(PanelSeries panelSeries, Series Serie) {
-        // Llenar el PanelPeliculas con la información de la película
-        
-        panelSeries.getlblTitulo().setText("Título: " + Serie.getTituloSerie());
-        panelSeries.getlblDirector().setText("Director: " + Serie.getDirectorSerie());
-        panelSeries.gettxtResumen().setText("Resumen: " + Serie.getResumenSerie());
-    }
-
-                  
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -4,16 +4,8 @@
  */
 package view;
 
-import controller.HibernateUtil;
-import java.awt.BorderLayout;
-import java.util.List;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import model.Peliculas;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import controller.listarPeliculasUtil;
+
 
 /**
  *
@@ -24,58 +16,18 @@ public class ListarPeliculas extends javax.swing.JPanel {
     /**
      * Creates new form ListarPeliculas
      */
+    listarPeliculasUtil listar = new listarPeliculasUtil();
     public ListarPeliculas() {
         initComponents();
-          mostrarPeliculas();
+        
+        listar.mostrarPeliculas(jPanel1);
           
     }
     
-     private void mostrarPeliculas() {
-        // Obtener la lista de películas desde la base de datos
-        List<Peliculas> peliculas = obtenerPeliculasDesdeBD();
 
-        // Crear el panel principal que contiene los paneles de películas
-        JPanel PanelPeliculas = new JPanel();
-        PanelPeliculas.setLayout(new BoxLayout(PanelPeliculas, BoxLayout.Y_AXIS));
 
-        // Agregar un PanelPeliculas por cada película
-        for (Peliculas pelicula : peliculas) {
-            PanelPeliculas panelPeliculas = new PanelPeliculas();
-            llenarPanelConPelicula(panelPeliculas, pelicula);
-            PanelPeliculas.add(panelPeliculas);
-            jPanel1.add(panelPeliculas);
-        }
 
-        // Crear JScrollPane y agregar el panel de películas
-        JScrollPane jScrollPane = new JScrollPane(PanelPeliculas);
 
-        // Agregar el JScrollPane al panel principal
-        add(jScrollPane, BorderLayout.CENTER);
-    }
-
-    private List<Peliculas> obtenerPeliculasDesdeBD() {
-        // Recuperar datos de la base de datos usando HibernateUtil
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-
-        // Usar una consulta HQL para obtener las películas
-        Query<Peliculas> query = session.createQuery("FROM Peliculas", Peliculas.class);
-        List<Peliculas> peliculas = query.getResultList();
-        System.out.println(peliculas.size());
-
-        // Cerrar la sesión de Hibernate
-        session.close();
-
-        return peliculas;
-    }
-
-    private void llenarPanelConPelicula(PanelPeliculas panelPeliculas, Peliculas pelicula) {
-        // Llenar el PanelPeliculas con la información de la película
-        
-        panelPeliculas.getlblTitulo().setText(pelicula.getTituloPelicula());
-        panelPeliculas.getlblDirector().setText(pelicula.getDirectorPelicula());
-        panelPeliculas.gettxtResumen().setText(pelicula.getResumenPelicula());
-    }
 
                   
 
