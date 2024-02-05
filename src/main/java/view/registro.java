@@ -8,6 +8,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.ajustarImagen;
 import javax.swing.ImageIcon;
 import controller.RegistroUtil;
+import controller.ValidarCorreo;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import org.jasypt.util.text.AES256TextEncryptor;
@@ -24,8 +25,10 @@ public class registro extends javax.swing.JFrame {
         initComponents();
         btnLogin.setBackground(Color.WHITE);
         ImageIcon icono = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\fondo.jpg", 630, 800);
-        ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 120, 100);    
-        // Establecer la imagen ajustada en el JLabel
+        ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 65, 55);    
+        ImageIcon logoletra = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\letraslogo.png", 120, 30);
+        
+        labelLogotxt.setIcon(logoletra);
         labelfondo.setIcon(icono);
         labellogo.setIcon(logo);
         botonVerpass.setIcon(new FlatSVGIcon("img/ojonoVer.svg",20,20));
@@ -57,9 +60,10 @@ public class registro extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtPasswrd = new javax.swing.JPasswordField();
-        labellogo = new javax.swing.JLabel();
         txtPasswrdRep = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
+        labelLogotxt = new javax.swing.JLabel();
+        labellogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -155,9 +159,6 @@ public class registro extends javax.swing.JFrame {
         txtPasswrd.setText("jPasswordField2");
         jPanel3.add(txtPasswrd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 350, 40));
 
-        labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
-        jPanel3.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 120, 100));
-
         txtPasswrdRep.setText("jPasswordField2");
         jPanel3.add(txtPasswrdRep, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 350, 40));
 
@@ -165,6 +166,13 @@ public class registro extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("Contraseña");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, -1, -1));
+
+        labelLogotxt.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        labelLogotxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/letraslogo.png"))); // NOI18N
+        jPanel3.add(labelLogotxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 120, 30));
+
+        labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
+        jPanel3.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(631, 0, 670, 800));
 
@@ -180,7 +188,7 @@ public class registro extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String contrasena = new String(txtPasswrd.getPassword());
         String contrasena2 = new String(txtPasswrdRep.getPassword());
-        
+        ValidarCorreo correo = new ValidarCorreo();
         if (!contrasena.equals(contrasena2)) {
             JOptionPane.showMessageDialog(this, "Por favor, las dos contraseñas tienen que ser iguales.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -191,7 +199,10 @@ public class registro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+        if (!correo.esCorreoValido(email)) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingrese una dirección de correo electrónico válida.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+}
 
 
         AES256TextEncryptor encryptor = new AES256TextEncryptor();
@@ -202,6 +213,7 @@ public class registro extends javax.swing.JFrame {
 
         if (registroExitoso) {
             JOptionPane.showMessageDialog(this, "Usuario registrado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            abrirVentanaLogin();
         } else {
             JOptionPane.showMessageDialog(this, "Error al registrar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -287,6 +299,7 @@ public class registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel labelLogotxt;
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labellogo;
     private javax.swing.JTextField txtEmail;

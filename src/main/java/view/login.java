@@ -23,7 +23,11 @@ public class login extends javax.swing.JFrame {
        btnRecordar.setBackground(Color.white);
        btnRegistro.setBackground(Color.white);
                 ImageIcon icono = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\fondo.jpg", 630, 800);
-                ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 120, 100);    
+                ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 65, 55);    
+                ImageIcon logoletra = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\letraslogo.png", 120, 30);
+        
+                
+        labelLogotxt.setIcon(logoletra);
         labelfondo.setIcon(icono);
         labellogo.setIcon(logo);
         
@@ -50,10 +54,11 @@ public class login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnRegistro = new javax.swing.JButton();
         txtPasswrd = new javax.swing.JPasswordField();
-        labellogo = new javax.swing.JLabel();
         btnRecordar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        labellogo = new javax.swing.JLabel();
+        labelLogotxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LOGIN");
@@ -65,27 +70,11 @@ public class login extends javax.swing.JFrame {
 
         Right.setBackground(new java.awt.Color(255, 255, 255));
         Right.setPreferredSize(new java.awt.Dimension(400, 500));
+        Right.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Right.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 806, -1, -1));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
-        Right.setLayout(RightLayout);
-        RightLayout.setHorizontalGroup(
-            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RightLayout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(labelfondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        RightLayout.setVerticalGroup(
-            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RightLayout.createSequentialGroup()
-                .addComponent(labelfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        Right.add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 800));
 
         jPanel1.add(Right);
         Right.setBounds(0, 0, 630, 800);
@@ -154,9 +143,6 @@ public class login extends javax.swing.JFrame {
         txtPasswrd.setText("jPasswordField2");
         Left.add(txtPasswrd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 350, 40));
 
-        labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
-        Left.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 120, 100));
-
         btnRecordar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRecordar.setForeground(new java.awt.Color(255, 51, 51));
         btnRecordar.setText("Recordar");
@@ -187,6 +173,13 @@ public class login extends javax.swing.JFrame {
 
         Left.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 180, -1));
 
+        labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
+        Left.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
+
+        labelLogotxt.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        labelLogotxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/letraslogo.png"))); // NOI18N
+        Left.add(labelLogotxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 120, 30));
+
         jPanel1.add(Left);
         Left.setBounds(630, 0, 670, 800);
 
@@ -212,7 +205,6 @@ public class login extends javax.swing.JFrame {
     int idUsuario = loginUtil.autenticarUsuario(correo, contrasena);
 
     if (idUsuario != 0) {
-        JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
         abrirVentanaPrincipal(idUsuario);
     } else {
@@ -312,6 +304,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelLogotxt;
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labellogo;
     private javax.swing.JTextField txtEmail;

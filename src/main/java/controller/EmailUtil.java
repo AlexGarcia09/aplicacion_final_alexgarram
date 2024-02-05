@@ -18,8 +18,8 @@ import javax.mail.internet.MimeMessage;
 public class EmailUtil {
 
     public static void sendPasswordResetEmail(String correo, String contrasena) {
-        final String fromEmail = "alexgrlp61@gmail.com";
-        final String password = "eulgtkahyrbknlaz";
+        final String fromEmail = "cinecrit09@gmail.com";
+        final String password = "kusntgantdtxksbq";
 
         System.out.println("SSLEmail Start");
 
@@ -44,8 +44,8 @@ public class EmailUtil {
         sendEmail(mailSession, correo, subject, body);
     }
         public static void EmailBienvenida(String correo) {
-        final String fromEmail = "alexgrlp61@gmail.com";
-        final String password = "eulgtkahyrbknlaz";
+        final String fromEmail = "cinecrit09@gmail.com";
+        final String password = "kusntgantdtxksbq";
 
         System.out.println("SSLEmail Start");
 
@@ -76,8 +76,8 @@ public class EmailUtil {
             msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
             msg.addHeader("format", "flowed");
             msg.addHeader("Content-Transfer-Encoding", "8bit");
-            msg.setFrom(new InternetAddress("alexgrlp61@gmail.com", "NoReply-JD"));
-            msg.setReplyTo(InternetAddress.parse("alexgrlp61@gmail.com", false));
+            msg.setFrom(new InternetAddress("cinecrit09@gmail.com", "NoReply-JD"));
+            msg.setReplyTo(InternetAddress.parse("cinecrit09@gmail.com", false));
             msg.setSubject(subject, "UTF-8");
             msg.setText(body, "UTF-8");
             msg.setSentDate(new Date());

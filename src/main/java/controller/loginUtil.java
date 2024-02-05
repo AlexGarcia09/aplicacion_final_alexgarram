@@ -10,7 +10,7 @@ import org.jasypt.util.text.AES256TextEncryptor;
  */
 
 public class loginUtil {
-    private static int idUsuarioActual;
+    public static int idUsuarioActual;
 
     public static int autenticarUsuario(String correo, String contrasena) {
         String contrasenaEncriptada = RecordarUtil.obtenerContrasenaPorCorreo(correo);

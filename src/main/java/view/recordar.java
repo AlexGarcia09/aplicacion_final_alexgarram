@@ -24,8 +24,10 @@ public class recordar extends javax.swing.JFrame {
         
         btnLogin.setBackground(Color.WHITE);
         ImageIcon fondo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\fondo.jpg", 630, 800);
-        ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 120, 100);
-
+        ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 65, 55);    
+        ImageIcon logoletra = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\letraslogo.png", 120, 30);
+                
+        labelLogotxt.setIcon(logoletra);
         labelfondo.setIcon(fondo);
         labellogo.setIcon(logo);
     }
@@ -47,6 +49,7 @@ public class recordar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         labellogo = new javax.swing.JLabel();
+        labelLogotxt = new javax.swing.JLabel();
         Right = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         labelfondo = new javax.swing.JLabel();
@@ -101,7 +104,11 @@ public class recordar extends javax.swing.JFrame {
         Left.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 755, 84, 31));
 
         labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
-        Left.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 120, 100));
+        Left.add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
+
+        labelLogotxt.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        labelLogotxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/letraslogo.png"))); // NOI18N
+        Left.add(labelLogotxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 120, 30));
 
         Right.setBackground(new java.awt.Color(0, 102, 102));
         Right.setPreferredSize(new java.awt.Dimension(400, 500));
@@ -216,6 +223,7 @@ public class recordar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel labelLogotxt;
     private javax.swing.JLabel labelfondo;
     private javax.swing.JLabel labellogo;
     private javax.swing.JTextField txtEmail;

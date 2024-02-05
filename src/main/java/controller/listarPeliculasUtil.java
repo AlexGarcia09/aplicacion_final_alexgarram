@@ -21,15 +21,15 @@ import view.PanelPeliculas;
  */
 public class listarPeliculasUtil {
     
-    private List<Peliculas> obtenerPeliculasDesdeBD() {
+    private List<Peliculas> obtenerPeliculasDesdeBD(int idUsuario) {
         // Recuperar datos de la base de datos usando HibernateUtil
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
 
         // Usar una consulta HQL para obtener las películas
-        Query<Peliculas> query = session.createQuery("FROM Peliculas", Peliculas.class);
+        Query<Peliculas> query = session.createQuery("SELECT p FROM Peliculas p JOIN p.usuarios u WHERE u.id = :idUsuario", Peliculas.class);
+        query.setParameter("idUsuario", idUsuario);
         List<Peliculas> peliculas = query.getResultList();
-        System.out.println(peliculas.size());
 
         // Cerrar la sesión de Hibernate
         session.close();
@@ -38,10 +38,9 @@ public class listarPeliculasUtil {
     }
     
     
-    public void mostrarPeliculas(JPanel jpanel) {
+    public void mostrarPeliculas(JPanel jpanel, int idUsuario) {
         // Obtener la lista de películas desde la base de datos
-        listarPeliculasUtil listar = new listarPeliculasUtil();
-        List<Peliculas> peliculas = listar.obtenerPeliculasDesdeBD();
+        List<Peliculas> peliculas = obtenerPeliculasDesdeBD(idUsuario);
 
         // Crear el panel principal que contiene los paneles de películas
         JPanel PanelPeliculas = new JPanel();

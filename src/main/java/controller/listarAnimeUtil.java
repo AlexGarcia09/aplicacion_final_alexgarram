@@ -23,9 +23,9 @@ import view.PanelPeliculas;
  */
 public class listarAnimeUtil {
     
-         public void mostrarAnimes(JPanel jpanel) {
+         public void mostrarAnimes(JPanel jpanel, int idUsuario) {
         // Obtener la lista de películas desde la base de datos
-        List<Anime> anime = obtenerAnimesDesdeBD();
+        List<Anime> anime = obtenerAnimesDesdeBD(idUsuario);
 
         // Crear el panel principal que contiene los paneles de películas
         JPanel PanelAnimes = new JPanel();
@@ -46,15 +46,16 @@ public class listarAnimeUtil {
         jpanel.add(jScrollPane, BorderLayout.CENTER);
     }
 
-    private List<Anime> obtenerAnimesDesdeBD() {
+    private List<Anime> obtenerAnimesDesdeBD(int idUsuario) {
         // Recuperar datos de la base de datos usando HibernateUtil
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
 
         // Usar una consulta HQL para obtener las películas
-        org.hibernate.Query<Anime> query = session.createQuery("FROM Anime", Anime.class);
+        org.hibernate.Query<Anime> query = session.createQuery("SELECT p FROM Anime p JOIN p.usuarios u WHERE u.id = :idUsuario", Anime.class);
+        query.setParameter("idUsuario", idUsuario);
         List<Anime> anime = query.getResultList();
-        System.out.println(anime.size());
+        
 
         // Cerrar la sesión de Hibernate
         session.close();

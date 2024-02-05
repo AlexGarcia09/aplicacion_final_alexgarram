@@ -23,24 +23,24 @@ import view.PanelSeries;
  */
 public class listarSeriesUtil {
     
-    private List<Series> obtenerSeriesDesdeBD() {
+    private List<Series> obtenerSeriesDesdeBD(int idUsuario) {
         // Recuperar datos de la base de datos usando HibernateUtil
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
 
         // Usar una consulta HQL para obtener las películas
-        org.hibernate.Query<Series> query = session.createQuery("FROM Series", Series.class);
+        org.hibernate.Query<Series> query = session.createQuery("SELECT p FROM Series p JOIN p.usuarios u WHERE u.id = :idUsuario", Series.class);
+        query.setParameter("idUsuario", idUsuario);
         List<Series> series = query.getResultList();
-        System.out.println(series.size());
 
         // Cerrar la sesión de Hibernate
         session.close();
 
         return series;
     }
-    public void mostrarSeries(JPanel jpanel) {
+    public void mostrarSeries(JPanel jpanel, int idUsuario) {
         // Obtener la lista de películas desde la base de datos
-        List<Series> series = obtenerSeriesDesdeBD();
+        List<Series> series = obtenerSeriesDesdeBD(idUsuario);
 
         // Crear el panel principal que contiene los paneles de películas
         JPanel PanelSeries = new JPanel();

@@ -32,9 +32,11 @@ public class Principal extends javax.swing.JFrame {
         
         initComponents();
         
-        ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 60, 50);
-        
+        ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 65, 55);
         lbllogo.setIcon(logo);
+        
+        ImageIcon logoletra = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\letraslogo.png", 120, 30);
+        labelLogotxt.setIcon(logoletra);
         
         lbliconoUser.setIcon(new FlatSVGIcon("img/user.svg",15,17));
         lbliconoAnadir.setIcon(new FlatSVGIcon("img/add.svg",15,15));
@@ -176,11 +178,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(botonResenas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 217, 30));
 
         lbllogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
-        jPanel2.add(lbllogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 60, 50));
+        jPanel2.add(lbllogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 0, 60, 50));
 
         labelLogotxt.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        labelLogotxt.setText("LOGOTEXTO");
-        jPanel2.add(labelLogotxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 150, 30));
+        labelLogotxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/letraslogo.png"))); // NOI18N
+        jPanel2.add(labelLogotxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 50, 120, 30));
 
         botonSesion.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         botonSesion.setForeground(new java.awt.Color(255, 51, 51));

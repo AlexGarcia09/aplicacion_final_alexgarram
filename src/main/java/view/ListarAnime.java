@@ -5,6 +5,7 @@
 package view;
 
 import controller.listarAnimeUtil;
+import controller.loginUtil;
 
 
 /**
@@ -14,12 +15,16 @@ import controller.listarAnimeUtil;
 public class ListarAnime extends javax.swing.JPanel {
     
     listarAnimeUtil anime = new listarAnimeUtil();
+    loginUtil login = new loginUtil();
+    
+    
     /**
      * Creates new form ListarPeliculas
      */
     public ListarAnime() {
         initComponents();
-          anime.mostrarAnimes(jPanel1);
+        int id = login.getIdUsuarioActual();
+        anime.mostrarAnimes(jPanel1, id);
           
     }
 

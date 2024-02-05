@@ -40,7 +40,6 @@ public class PanelSeries extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -48,13 +47,13 @@ public class PanelSeries extends javax.swing.JPanel {
         lblTitulo = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtResumen = new javax.swing.JLabel();
+        botonBorrar = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
+        botonMensaje = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51), 3));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton1.setText("Borrar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 160, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("Titulo:");
@@ -74,6 +73,15 @@ public class PanelSeries extends javax.swing.JPanel {
         txtResumen.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(txtResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 670, 90));
 
+        botonBorrar.setBackground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 120, 45, 45));
+
+        botonActualizar.setBackground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 65, 45, 45));
+
+        botonMensaje.setBackground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(botonMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, 45, 45));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,7 +96,9 @@ public class PanelSeries extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonBorrar;
+    private javax.swing.JButton botonMensaje;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
