@@ -39,7 +39,33 @@ public class EmailUtil {
         System.out.println("Session created");
 
         String subject = "Recuperación de Contraseña";
-        String body = "Su contraseña es: " + contrasena;
+        String body = "Su contraseña de CineCrit es: " + contrasena;
+
+        sendEmail(mailSession, correo, subject, body);
+    }
+        public static void EmailBienvenida(String correo) {
+        final String fromEmail = "alexgrlp61@gmail.com";
+        final String password = "eulgtkahyrbknlaz";
+
+        System.out.println("SSLEmail Start");
+
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        Authenticator auth = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        };
+
+        Session mailSession = Session.getDefaultInstance(props, auth);
+        System.out.println("Session created");
+
+        String subject = "Bienvenido a CineCrit";
+        String body = "¡Gracias por registrarte en CineCrit! \nBienvenido al equipo.";
 
         sendEmail(mailSession, correo, subject, body);
     }

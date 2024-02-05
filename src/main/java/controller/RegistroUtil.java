@@ -23,8 +23,9 @@ public class RegistroUtil {
             nuevoUsuario.setContrasena(contrasena);
 
             session.save(nuevoUsuario);
-
+            
             transaction.commit();
+            EmailUtil.EmailBienvenida(email);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
