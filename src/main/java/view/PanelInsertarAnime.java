@@ -7,6 +7,9 @@ package view;
 import controller.InsertarAnimeUtil;
 import controller.OptionPane;
 import controller.loginUtil;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,6 +37,7 @@ public class PanelInsertarAnime extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        txtGenero = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -42,7 +46,6 @@ public class PanelInsertarAnime extends javax.swing.JPanel {
         txtSalida = new javax.swing.JTextField();
         txtEstudio = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JTextField();
-        txtGenero = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaResumen = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
@@ -50,6 +53,9 @@ public class PanelInsertarAnime extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Shonen", "Shojo", "Seinen", "Josei", "Mecha", "Isekai", "Fantasía", "Ciencia Ficción", "Comedia", "Romance", "Aventura", "Slice of Life", "Sobrenatural", "Horror", "Deportes" }));
+        jPanel1.add(txtGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("Estudio de animación");
@@ -73,7 +79,6 @@ public class PanelInsertarAnime extends javax.swing.JPanel {
         jPanel1.add(txtSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 500, 30));
         jPanel1.add(txtEstudio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 500, 30));
         jPanel1.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 500, 30));
-        jPanel1.add(txtGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
 
         txtAreaResumen.setColumns(20);
         txtAreaResumen.setRows(5);
@@ -110,15 +115,28 @@ public class PanelInsertarAnime extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     String titulo = txtTitulo.getText();
+    String titulo = txtTitulo.getText();
     String director = txtEstudio.getText();
     String resumen = txtAreaResumen.getText();
-    String genero = txtGenero.getText();
+    String genero = txtGenero.getSelectedItem().toString();
     String fecha = txtSalida.getText();
+    
+    OptionPane optionPane = new OptionPane();
+    optionPane.colorOptionpane();
+    
+    if (titulo.isEmpty() || director.isEmpty() || resumen.isEmpty() || genero.isEmpty() || fecha.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+        return; 
+    }
+    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+    formatoFecha.setLenient(false); 
 
-        OptionPane optionPane = new OptionPane();
-        optionPane.colorOptionpane();
-
+    try {
+        Date fechaValida = formatoFecha.parse(fecha);
+    } catch (ParseException e) {
+        JOptionPane.showMessageDialog(this, "Formato de fecha incorrecto. Utiliza el formato día/mes/año", "Error", JOptionPane.ERROR_MESSAGE);
+        return; 
+    }
     int idUsuario = loginUtil.getIdUsuarioActual();
 
     if (idUsuario != 0) {
@@ -143,7 +161,7 @@ public class PanelInsertarAnime extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtAreaResumen;
     private javax.swing.JTextField txtEstudio;
-    private javax.swing.JTextField txtGenero;
+    private javax.swing.JComboBox<String> txtGenero;
     private javax.swing.JTextField txtSalida;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables

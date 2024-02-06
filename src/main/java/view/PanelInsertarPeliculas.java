@@ -7,6 +7,9 @@ package view;
 import controller.InsertarPeliculasUtil;
 import controller.OptionPane;
 import controller.loginUtil;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,6 +37,7 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        txtGenero1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -42,7 +46,6 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
         txtFecha = new javax.swing.JTextField();
         txtDirector = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JTextField();
-        txtGenero = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaResumen = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
@@ -50,6 +53,9 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtGenero1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Aventura", "Animación", "Comedia", "Crimen", "Documental", "Drama", "Familia", "Fantasía", "Historia", "Horror", "Misterio", "Música", "Romance", "Ciencia ficción", "Deporte", "Suspense", "Bélica", "Western" }));
+        jPanel1.add(txtGenero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("Nombre del director");
@@ -73,7 +79,6 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
         jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 500, 30));
         jPanel1.add(txtDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 500, 30));
         jPanel1.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 500, 30));
-        jPanel1.add(txtGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
 
         txtAreaResumen.setColumns(20);
         txtAreaResumen.setRows(5);
@@ -101,11 +106,11 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1120, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -113,20 +118,33 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
     String titulo = txtTitulo.getText();
     String director = txtDirector.getText();
     String resumen = txtAreaResumen.getText();
-    String genero = txtGenero.getText();
+    String genero = txtGenero1.getSelectedItem().toString();
     String fecha = txtFecha.getText();
+    
+    OptionPane optionPane = new OptionPane();
+    optionPane.colorOptionpane();
+    
+    if (titulo.isEmpty() || director.isEmpty() || resumen.isEmpty() || genero.isEmpty() || fecha.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+        return; 
+    }
+    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+    formatoFecha.setLenient(false);
 
-        OptionPane optionPane = new OptionPane();
-        optionPane.colorOptionpane();
-
+    try {
+        Date fechaValida = formatoFecha.parse(fecha);
+    } catch (ParseException e) {
+        JOptionPane.showMessageDialog(this, "Formato de fecha incorrecto. Utiliza el formato día/mes/año", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+ 
     int idUsuario = loginUtil.getIdUsuarioActual();
-
     if (idUsuario != 0) {
         InsertarPeliculasUtil insertarUtil = new InsertarPeliculasUtil();
         insertarUtil.insertarPelicula(idUsuario, titulo, director, resumen, fecha, genero);
         JOptionPane.showMessageDialog(this, "Película insertada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     } else {
-        JOptionPane.showMessageDialog(this, "Error al insertal la película", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Error al insertar la película", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -144,7 +162,7 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
     private javax.swing.JTextArea txtAreaResumen;
     private javax.swing.JTextField txtDirector;
     private javax.swing.JTextField txtFecha;
-    private javax.swing.JTextField txtGenero;
+    private javax.swing.JComboBox<String> txtGenero1;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

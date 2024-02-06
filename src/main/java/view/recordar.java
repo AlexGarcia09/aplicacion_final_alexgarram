@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.OptionPane;
 import controller.RecordarUtil;
 import controller.ajustarImagen;
 import java.awt.Color;
@@ -21,6 +22,7 @@ public class recordar extends javax.swing.JFrame {
      */
     public recordar() {
         initComponents();
+        getRootPane().setDefaultButton(btnRecordar);
         
         btnLogin.setBackground(Color.WHITE);
         ImageIcon fondo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\fondo.jpg", 630, 800);
@@ -45,7 +47,7 @@ public class recordar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnRecordar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         labellogo = new javax.swing.JLabel();
@@ -74,17 +76,17 @@ public class recordar extends javax.swing.JFrame {
         txtEmail.setForeground(new java.awt.Color(102, 102, 102));
         Left.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 350, 40));
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Recordar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRecordar.setBackground(new java.awt.Color(255, 51, 51));
+        btnRecordar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRecordar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRecordar.setText("Recordar");
+        btnRecordar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRecordar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRecordarActionPerformed(evt);
             }
         });
-        Left.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 130, 36));
+        Left.add(btnRecordar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 130, 36));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Volver al login");
@@ -150,7 +152,10 @@ public class recordar extends javax.swing.JFrame {
     abrirVentanaLogin();
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRecordarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecordarActionPerformed
+    
+    OptionPane optionPane = new OptionPane();
+    optionPane.colorOptionpane();
     
     String destinatario = txtEmail.getText();
 
@@ -168,7 +173,7 @@ public class recordar extends javax.swing.JFrame {
     } else {
         JOptionPane.showMessageDialog(this, "No se encontró la contraseña para el correo proporcionado.", "Error", JOptionPane.ERROR_MESSAGE);
     }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRecordarActionPerformed
         private void abrirVentanaLogin() {
 
         login loginFrame = new login();
@@ -218,7 +223,7 @@ public class recordar extends javax.swing.JFrame {
     private javax.swing.JPanel Left;
     private javax.swing.JPanel Right;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnRecordar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

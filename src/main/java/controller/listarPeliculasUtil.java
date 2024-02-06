@@ -48,7 +48,7 @@ public class listarPeliculasUtil {
 
         // Agregar un PanelPeliculas por cada película
         for (Peliculas pelicula : peliculas) {
-            PanelPeliculas panelPeliculas = new PanelPeliculas();
+            PanelPeliculas panelPeliculas = new PanelPeliculas(pelicula.getId());
             llenarPanelConPelicula(panelPeliculas, pelicula);
             PanelPeliculas.add(panelPeliculas);
             jpanel.add(panelPeliculas);
@@ -68,6 +68,22 @@ public class listarPeliculasUtil {
         panelPeliculas.getlblTitulo().setText(pelicula.getTituloPelicula());
         panelPeliculas.getlblDirector().setText(pelicula.getDirectorPelicula());
         panelPeliculas.gettxtResumen().setText(pelicula.getResumenPelicula());
+    }
+        
+        public Peliculas obtenerPeliculaPorId(int idPelicula) {
+        // Recuperar datos de la base de datos usando HibernateUtil
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        // Usar una consulta HQL para obtener la película por su ID
+        Query<Peliculas> query = session.createQuery("FROM Peliculas WHERE id = :idPelicula", Peliculas.class);
+        query.setParameter("idPelicula", idPelicula);
+        Peliculas pelicula = query.uniqueResult();
+
+        // Cerrar la sesión de Hibernate
+        session.close();
+
+        return pelicula;
     }
     
 }

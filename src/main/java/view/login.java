@@ -9,6 +9,7 @@ import java.awt.Color;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -20,8 +21,9 @@ public class login extends javax.swing.JFrame {
   
     public login() {
         initComponents();
-       btnRecordar.setBackground(Color.white);
-       btnRegistro.setBackground(Color.white);
+        getRootPane().setDefaultButton(btnLogin);
+        btnRecordar.setBackground(Color.white);
+        btnRegistro.setBackground(Color.white);
                 ImageIcon icono = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\fondo.jpg", 630, 800);
                 ImageIcon logo = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\logo.png", 65, 55);    
                 ImageIcon logoletra = ajustarImagen.cargarYAjustarImagen("src\\main\\resources\\img\\letraslogo.png", 120, 30);
@@ -50,7 +52,7 @@ public class login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnRegistro = new javax.swing.JButton();
         txtPasswrd = new javax.swing.JPasswordField();
@@ -111,17 +113,17 @@ public class login extends javax.swing.JFrame {
         jLabel3.setText("Password");
         Left.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Login");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(255, 51, 51));
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Login");
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        Left.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 93, 36));
+        Left.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 93, 36));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("No tienes cuenta?");
@@ -197,7 +199,7 @@ public class login extends javax.swing.JFrame {
         abrirVentanaRecordar();
     }//GEN-LAST:event_btnRecordarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
     String correo = txtEmail.getText();
     String contrasena = new String(txtPasswrd.getPassword());
     OptionPane optionPane = new OptionPane();
@@ -210,7 +212,7 @@ public class login extends javax.swing.JFrame {
     } else {
         JOptionPane.showMessageDialog(this, "Inicio de sesión fallido. Verifica tu correo y contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
     }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void botonVerpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerpassActionPerformed
         System.out.println(botonVerpass.isSelected());
@@ -293,9 +295,9 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel Left;
     private javax.swing.JPanel Right;
     private javax.swing.JToggleButton botonVerpass;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRecordar;
     private javax.swing.JButton btnRegistro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

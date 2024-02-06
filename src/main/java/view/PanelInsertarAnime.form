@@ -37,6 +37,38 @@
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
+        <Component class="javax.swing.JComboBox" name="txtGenero">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="16">
+                <StringItem index="0" value="Acci&#xf3;n"/>
+                <StringItem index="1" value="Shonen"/>
+                <StringItem index="2" value="Shojo"/>
+                <StringItem index="3" value="Seinen"/>
+                <StringItem index="4" value="Josei"/>
+                <StringItem index="5" value="Mecha"/>
+                <StringItem index="6" value="Isekai"/>
+                <StringItem index="7" value="Fantas&#xed;a"/>
+                <StringItem index="8" value="Ciencia Ficci&#xf3;n"/>
+                <StringItem index="9" value="Comedia"/>
+                <StringItem index="10" value="Romance"/>
+                <StringItem index="11" value="Aventura"/>
+                <StringItem index="12" value="Slice of Life"/>
+                <StringItem index="13" value="Sobrenatural"/>
+                <StringItem index="14" value="Horror"/>
+                <StringItem index="15" value="Deportes"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="290" y="320" width="500" height="30"/>
+            </Constraint>
+          </Constraints>
+        </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -120,13 +152,6 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="290" y="140" width="500" height="30"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtGenero">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="290" y="320" width="500" height="30"/>
             </Constraint>
           </Constraints>
         </Component>

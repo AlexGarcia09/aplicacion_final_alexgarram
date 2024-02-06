@@ -7,6 +7,9 @@ package view;
 import controller.InsertarSeriesUtil;
 import controller.OptionPane;
 import controller.loginUtil;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,10 +41,10 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        txtGenero1 = new javax.swing.JComboBox<>();
         txtSalida = new javax.swing.JTextField();
         txtDirector = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JTextField();
-        txtGenero = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtareaResumen = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
@@ -69,10 +72,12 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel5.setText("Resumen");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 470, 86, -1));
+
+        txtGenero1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Aventura", "Animación", "Comedia", "Crimen", "Documental", "Drama", "Familia", "Fantasía", "Historia", "Horror", "Misterio", "Música", "Romance", "Ciencia ficción", "Deporte", "Suspense", "Bélica", "Western" }));
+        jPanel1.add(txtGenero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
         jPanel1.add(txtSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 500, 30));
         jPanel1.add(txtDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 500, 30));
         jPanel1.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 500, 30));
-        jPanel1.add(txtGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
 
         txtareaResumen.setColumns(20);
         txtareaResumen.setRows(5);
@@ -109,14 +114,28 @@ public class panelInsertarSeries extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     String titulo = txtTitulo.getText();
+    String titulo = txtTitulo.getText();
     String director = txtDirector.getText();
     String resumen = txtareaResumen.getText();
-    String genero = txtGenero.getText();
+    String genero = txtGenero1.getSelectedItem().toString();
     String fecha = txtSalida.getText();
-
-        OptionPane optionPane = new OptionPane();
-        optionPane.colorOptionpane();
+    
+    OptionPane optionPane = new OptionPane();
+    optionPane.colorOptionpane();
+    
+    if (titulo.isEmpty() || director.isEmpty() || resumen.isEmpty() || genero.isEmpty() || fecha.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+    formatoFecha.setLenient(false);
+    try {
+        Date fechaValida = formatoFecha.parse(fecha);
+    } catch (ParseException e) {
+        JOptionPane.showMessageDialog(this, "Formato de fecha incorrecto. Utiliza el formato día/mes/año", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
 
     int idUsuario = loginUtil.getIdUsuarioActual();
 
@@ -141,7 +160,7 @@ public class panelInsertarSeries extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtDirector;
-    private javax.swing.JTextField txtGenero;
+    private javax.swing.JComboBox<String> txtGenero1;
     private javax.swing.JTextField txtSalida;
     private javax.swing.JTextField txtTitulo;
     private javax.swing.JTextArea txtareaResumen;

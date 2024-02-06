@@ -5,20 +5,23 @@
 package view;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import controller.listarPeliculasUtil;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import model.Peliculas;
 
 /**
  *
  * @author Alumno
  */
 public class PanelPeliculas extends javax.swing.JPanel {
-
+    private int idPelicula;
     /**
      * Creates new form PanelPeliculas
      */
-    public PanelPeliculas() {
+    public PanelPeliculas(int idPelicula) {
         initComponents();
+        this.idPelicula = idPelicula;
         botonBorrar.setIcon(new FlatSVGIcon("img/borrar.svg",35,35));
         botonActualizar.setIcon(new FlatSVGIcon("img/actualizar.svg",35,35));
         botonMensaje.setIcon(new FlatSVGIcon("img/mensaje.svg",35,35));
@@ -61,6 +64,11 @@ public class PanelPeliculas extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonActualizar.setBackground(new java.awt.Color(255, 51, 51));
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 65, 45, 45));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -121,6 +129,16 @@ public class PanelPeliculas extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+     listarPeliculasUtil util = new listarPeliculasUtil();
+    Peliculas pelicula = util.obtenerPeliculaPorId(idPelicula);
+    
+    // Crear una nueva instancia de ActualizarPeliculas y pasarle la película
+    ActualizarPeliculas actualizarPeliculas = new ActualizarPeliculas();
+    actualizarPeliculas.setPelicula(pelicula);
+    actualizarPeliculas.setVisible(true);
+    }//GEN-LAST:event_botonActualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
