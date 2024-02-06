@@ -37,7 +37,7 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtGenero1 = new javax.swing.JComboBox<>();
+        txtGenero = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -54,8 +54,8 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtGenero1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Aventura", "Animación", "Comedia", "Crimen", "Documental", "Drama", "Familia", "Fantasía", "Historia", "Horror", "Misterio", "Música", "Romance", "Ciencia ficción", "Deporte", "Suspense", "Bélica", "Western" }));
-        jPanel1.add(txtGenero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
+        txtGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Aventura", "Animación", "Comedia", "Crimen", "Documental", "Drama", "Familia", "Fantasía", "Historia", "Horror", "Misterio", "Música", "Romance", "Ciencia ficción", "Deporte", "Suspense", "Bélica", "Western" }));
+        jPanel1.add(txtGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("Nombre del director");
@@ -118,7 +118,7 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
     String titulo = txtTitulo.getText();
     String director = txtDirector.getText();
     String resumen = txtAreaResumen.getText();
-    String genero = txtGenero1.getSelectedItem().toString();
+    String genero = txtGenero.getSelectedItem().toString();
     String fecha = txtFecha.getText();
     
     OptionPane optionPane = new OptionPane();
@@ -143,6 +143,11 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
         InsertarPeliculasUtil insertarUtil = new InsertarPeliculasUtil();
         insertarUtil.insertarPelicula(idUsuario, titulo, director, resumen, fecha, genero);
         JOptionPane.showMessageDialog(this, "Película insertada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        txtTitulo.setText("");
+        txtDirector.setText("");
+        txtAreaResumen.setText("");
+        txtGenero.setSelectedIndex(0);
+        txtFecha.setText("");
     } else {
         JOptionPane.showMessageDialog(this, "Error al insertar la película", "Error", JOptionPane.ERROR_MESSAGE);
     }
@@ -162,7 +167,7 @@ public class PanelInsertarPeliculas extends javax.swing.JPanel {
     private javax.swing.JTextArea txtAreaResumen;
     private javax.swing.JTextField txtDirector;
     private javax.swing.JTextField txtFecha;
-    private javax.swing.JComboBox<String> txtGenero1;
+    private javax.swing.JComboBox<String> txtGenero;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

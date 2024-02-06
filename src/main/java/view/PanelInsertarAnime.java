@@ -143,6 +143,11 @@ public class PanelInsertarAnime extends javax.swing.JPanel {
         InsertarAnimeUtil insertarUtil = new InsertarAnimeUtil();
         insertarUtil.insertarAnime(idUsuario, titulo, director, resumen, fecha, genero);
         JOptionPane.showMessageDialog(this, "Anime insertado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        txtTitulo.setText("");
+        txtEstudio.setText("");
+        txtAreaResumen.setText("");
+        txtGenero.setSelectedIndex(0);
+        txtSalida.setText("");
     } else {
         JOptionPane.showMessageDialog(this, "Error al insertar el anime", "Error", JOptionPane.ERROR_MESSAGE);
     }

@@ -41,7 +41,7 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtGenero1 = new javax.swing.JComboBox<>();
+        txtGenero = new javax.swing.JComboBox<>();
         txtSalida = new javax.swing.JTextField();
         txtDirector = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JTextField();
@@ -73,8 +73,8 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         jLabel5.setText("Resumen");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 470, 86, -1));
 
-        txtGenero1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Aventura", "Animación", "Comedia", "Crimen", "Documental", "Drama", "Familia", "Fantasía", "Historia", "Horror", "Misterio", "Música", "Romance", "Ciencia ficción", "Deporte", "Suspense", "Bélica", "Western" }));
-        jPanel1.add(txtGenero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
+        txtGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Aventura", "Animación", "Comedia", "Crimen", "Documental", "Drama", "Familia", "Fantasía", "Historia", "Horror", "Misterio", "Música", "Romance", "Ciencia ficción", "Deporte", "Suspense", "Bélica", "Western" }));
+        jPanel1.add(txtGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 500, 30));
         jPanel1.add(txtSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 500, 30));
         jPanel1.add(txtDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 500, 30));
         jPanel1.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 500, 30));
@@ -117,7 +117,7 @@ public class panelInsertarSeries extends javax.swing.JPanel {
     String titulo = txtTitulo.getText();
     String director = txtDirector.getText();
     String resumen = txtareaResumen.getText();
-    String genero = txtGenero1.getSelectedItem().toString();
+    String genero = txtGenero.getSelectedItem().toString();
     String fecha = txtSalida.getText();
     
     OptionPane optionPane = new OptionPane();
@@ -143,6 +143,11 @@ public class panelInsertarSeries extends javax.swing.JPanel {
         InsertarSeriesUtil insertarUtil = new InsertarSeriesUtil();
         insertarUtil.insertarSerie(idUsuario, titulo, director, resumen, fecha, genero);
         JOptionPane.showMessageDialog(this, "Serie insertada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        txtTitulo.setText("");
+        txtDirector.setText("");
+        txtareaResumen.setText("");
+        txtGenero.setSelectedIndex(0);
+        txtSalida.setText("");
     } else {
         JOptionPane.showMessageDialog(this, "Error al insertar la serie", "Error", JOptionPane.ERROR_MESSAGE);
     }
@@ -160,7 +165,7 @@ public class panelInsertarSeries extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtDirector;
-    private javax.swing.JComboBox<String> txtGenero1;
+    private javax.swing.JComboBox<String> txtGenero;
     private javax.swing.JTextField txtSalida;
     private javax.swing.JTextField txtTitulo;
     private javax.swing.JTextArea txtareaResumen;
