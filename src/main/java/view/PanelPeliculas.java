@@ -5,8 +5,10 @@
 package view;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import controller.BorrarUtil;
 import controller.listarPeliculasUtil;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import model.Peliculas;
 
@@ -98,6 +100,11 @@ public class PanelPeliculas extends javax.swing.JPanel {
         jPanel1.add(txtResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 85, 890, 90));
 
         botonBorrar.setBackground(new java.awt.Color(255, 51, 51));
+        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 120, 45, 45));
 
         jPanel2.setBackground(new java.awt.Color(255, 51, 51));
@@ -139,6 +146,18 @@ public class PanelPeliculas extends javax.swing.JPanel {
     actualizarPeliculas.setPelicula(pelicula);
     actualizarPeliculas.setVisible(true);
     }//GEN-LAST:event_botonActualizarActionPerformed
+
+    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+     int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres borrar esta película?", "Confirmar borrado", JOptionPane.YES_NO_OPTION);
+        BorrarUtil util = new BorrarUtil();
+     if (confirmacion == JOptionPane.YES_OPTION) {
+        // Llamar al método para eliminar la película por su ID
+        util.borrarPeliculaPorId(idPelicula);
+        
+        // Actualizar la interfaz gráfica, por ejemplo, ocultando este panel
+        this.setVisible(false);
+    }
+    }//GEN-LAST:event_botonBorrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
