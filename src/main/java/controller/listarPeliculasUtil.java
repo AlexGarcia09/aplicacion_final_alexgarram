@@ -38,49 +38,38 @@ public class listarPeliculasUtil {
     }
     
     
-    public void mostrarPeliculas(JPanel jpanel, int idUsuario) {
-        // Obtener la lista de películas desde la base de datos
-        List<Peliculas> peliculas = obtenerPeliculasDesdeBD(idUsuario);
+        public void mostrarPeliculas(JPanel jPanel, int idUsuario) {
+            List<Peliculas> peliculas = obtenerPeliculasDesdeBD(idUsuario);
 
-        // Crear el panel principal que contiene los paneles de películas
-        JPanel PanelPeliculas = new JPanel();
-        PanelPeliculas.setLayout(new BoxLayout(PanelPeliculas, BoxLayout.Y_AXIS));
+            jPanel.removeAll();
 
-        // Agregar un PanelPeliculas por cada película
-        for (Peliculas pelicula : peliculas) {
-            PanelPeliculas panelPeliculas = new PanelPeliculas(pelicula.getId());
-            llenarPanelConPelicula(panelPeliculas, pelicula);
-            PanelPeliculas.add(panelPeliculas);
-            jpanel.add(panelPeliculas);
+            JPanel panelPeliculas = new JPanel();
+            panelPeliculas.setLayout(new BoxLayout(panelPeliculas, BoxLayout.Y_AXIS));
+
+            for (Peliculas pelicula : peliculas) {
+                PanelPeliculas panelPelicula = new PanelPeliculas(pelicula.getId());
+                llenarPanelConPelicula(panelPelicula, pelicula);
+                panelPeliculas.add(panelPelicula);
+            }
+            jPanel.add(panelPeliculas);
         }
-
-        // Crear JScrollPane y agregar el panel de películas
-        JScrollPane jScrollPane = new JScrollPane(PanelPeliculas);
-
-        // Agregar el JScrollPane al panel principal
-        jpanel.add(jScrollPane, BorderLayout.CENTER);
-    }
     
     
         private void llenarPanelConPelicula(PanelPeliculas panelPeliculas, Peliculas pelicula) {
-        // Llenar el PanelPeliculas con la información de la película
-        
         panelPeliculas.getlblTitulo().setText(pelicula.getTituloPelicula());
         panelPeliculas.getlblDirector().setText(pelicula.getDirectorPelicula());
         panelPeliculas.gettxtResumen().setText(pelicula.getResumenPelicula());
     }
         
         public Peliculas obtenerPeliculaPorId(int idPelicula) {
-        // Recuperar datos de la base de datos usando HibernateUtil
+
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
 
-        // Usar una consulta HQL para obtener la película por su ID
         Query<Peliculas> query = session.createQuery("FROM Peliculas WHERE id = :idPelicula", Peliculas.class);
         query.setParameter("idPelicula", idPelicula);
         Peliculas pelicula = query.uniqueResult();
 
-        // Cerrar la sesión de Hibernate
         session.close();
 
         return pelicula;

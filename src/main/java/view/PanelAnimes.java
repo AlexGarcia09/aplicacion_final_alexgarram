@@ -4,20 +4,29 @@
  */
 package view;
 
+import com.formdev.flatlaf.extras.FlatSVGIcon;
+import controller.BorrarUtil;
+import controller.listarAnimeUtil;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import model.Anime;
 
 /**
  *
  * @author Alumno
  */
 public class PanelAnimes extends javax.swing.JPanel {
-
+            private int idAnime;
     /**
      * Creates new form PanelPeliculas
      */
-    public PanelAnimes() {
+    public PanelAnimes(int idAnime) {
         initComponents();
+         this.idAnime = idAnime;
+        botonBorrar.setIcon(new FlatSVGIcon("img/borrar.svg",35,35));
+        botonActualizar.setIcon(new FlatSVGIcon("img/actualizar.svg",35,35));
+        botonMensaje.setIcon(new FlatSVGIcon("img/mensaje.svg",35,35));
     }
     public JLabel getlblTitulo() {
         return lblTitulo;
@@ -74,9 +83,19 @@ public class PanelAnimes extends javax.swing.JPanel {
         jPanel1.add(txtResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 670, 90));
 
         botonBorrar.setBackground(new java.awt.Color(255, 51, 51));
+        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 120, 45, 45));
 
         botonActualizar.setBackground(new java.awt.Color(255, 51, 51));
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 65, 45, 45));
 
         botonMensaje.setBackground(new java.awt.Color(255, 51, 51));
@@ -93,6 +112,25 @@ public class PanelAnimes extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+        listarAnimeUtil util = new listarAnimeUtil();
+    Anime anime = util.obtenerAnimePorId(idAnime);
+    
+        ActualizarAnime actualizarAnime = new ActualizarAnime();
+    actualizarAnime.setAnime(anime);
+    actualizarAnime.setVisible(true);
+    }//GEN-LAST:event_botonActualizarActionPerformed
+
+    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+    int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres borrar este anime?", "Confirmar borrado", JOptionPane.YES_NO_OPTION);
+    BorrarUtil util = new BorrarUtil();
+    if (confirmacion == JOptionPane.YES_OPTION) {
+        
+        util.borrarAnimePorId(idAnime);
+        
+    }
+    }//GEN-LAST:event_botonBorrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

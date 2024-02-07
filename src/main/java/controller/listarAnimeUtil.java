@@ -33,7 +33,7 @@ public class listarAnimeUtil {
 
         // Agregar un PanelPeliculas por cada película
         for (Anime animes : anime) {
-            PanelAnimes panelAnimes = new PanelAnimes();
+            PanelAnimes panelAnimes = new PanelAnimes(animes.getId());
             llenarPanelConAnime(panelAnimes, animes);
             PanelAnimes.add(panelAnimes);
             jpanel.add(panelAnimes);
@@ -66,11 +66,25 @@ public class listarAnimeUtil {
     private void llenarPanelConAnime(PanelAnimes panelAnime, Anime anime) {
         // Llenar el PanelPeliculas con la información de la película
         
-        panelAnime.getlblTitulo().setText("Título: " + anime.getTituloAnime());
-        panelAnime.getlblDirector().setText("Director: " + anime.getDirectorAnime());
-        panelAnime.gettxtResumen().setText("Resumen: " + anime.getResumenAnime());
+        panelAnime.getlblTitulo().setText(anime.getTituloAnime());
+        panelAnime.getlblDirector().setText(anime.getDirectorAnime());
+        panelAnime.gettxtResumen().setText(anime.getResumenAnime());
     }
+    public Anime obtenerAnimePorId(int idAnime) {
+        // Abrir una sesión de Hibernate
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
 
+        // Consultar la base de datos para obtener el anime por su ID
+        Query<Anime> query = session.createQuery("FROM Anime WHERE id = :idAnime", Anime.class);
+        query.setParameter("idAnime", idAnime);
+        Anime anime = query.uniqueResult();
+
+        // Cerrar la sesión de Hibernate
+        session.close();
+
+        return anime;
+    }
                   
     
 }

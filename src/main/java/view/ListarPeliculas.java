@@ -6,6 +6,7 @@ package view;
 
 import controller.listarPeliculasUtil;
 import controller.loginUtil;
+import javax.swing.JPanel;
 
 
 /**
@@ -24,13 +25,15 @@ public class ListarPeliculas extends javax.swing.JPanel {
         initComponents();
         int id = login.getIdUsuarioActual();
         
-        listar.mostrarPeliculas(jPanel1, id);
+        listar.mostrarPeliculas(panelListarPeliculas, id);
           
     }
     
 
 
-
+    public JPanel obtenerPanelPeliculas() {
+        return panelListarPeliculas;
+    }
 
 
                   
@@ -45,12 +48,12 @@ public class ListarPeliculas extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        panelListarPeliculas = new javax.swing.JPanel();
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
-        jScrollPane1.setViewportView(jPanel1);
+        panelListarPeliculas.setLayout(new javax.swing.BoxLayout(panelListarPeliculas, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(panelListarPeliculas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -66,8 +69,8 @@ public class ListarPeliculas extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelListarPeliculas;
     // End of variables declaration//GEN-END:variables
 }
 

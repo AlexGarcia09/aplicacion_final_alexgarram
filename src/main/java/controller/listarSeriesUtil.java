@@ -9,12 +9,10 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import model.Peliculas;
 import model.Series;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import view.PanelPeliculas;
 import view.PanelSeries;
 
 /**
@@ -48,7 +46,7 @@ public class listarSeriesUtil {
 
 
         for (Series serie : series) {
-            PanelSeries panelseries = new PanelSeries();
+            PanelSeries panelseries = new PanelSeries(serie.getId());
             llenarPanelConSerie(panelseries, serie);
             PanelSeries.add(panelseries);
             jpanel.add(panelseries);
@@ -66,10 +64,22 @@ public class listarSeriesUtil {
      private void llenarPanelConSerie(PanelSeries panelSeries, Series Serie) {
         // Llenar el PanelPeliculas con la información de la película
         
-        panelSeries.getlblTitulo().setText("Título: " + Serie.getTituloSerie());
-        panelSeries.getlblDirector().setText("Director: " + Serie.getDirectorSerie());
-        panelSeries.gettxtResumen().setText("Resumen: " + Serie.getResumenSerie());
+        panelSeries.getlblTitulo().setText(Serie.getTituloSerie());
+        panelSeries.getlblDirector().setText(Serie.getDirectorSerie());
+        panelSeries.gettxtResumen().setText(Serie.getResumenSerie());
     }
+    public Series obtenerSeriesPorId(int idSerie) {
 
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        Query<Series> query = session.createQuery("FROM Series WHERE id = :idSerie", Series.class);
+        query.setParameter("idSerie", idSerie);
+        Series series = query.uniqueResult();
+
+        session.close();
+
+        return series;
+    }
     
 }

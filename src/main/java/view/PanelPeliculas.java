@@ -138,24 +138,21 @@ public class PanelPeliculas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-     listarPeliculasUtil util = new listarPeliculasUtil();
+    listarPeliculasUtil util = new listarPeliculasUtil();
     Peliculas pelicula = util.obtenerPeliculaPorId(idPelicula);
     
-    // Crear una nueva instancia de ActualizarPeliculas y pasarle la película
     ActualizarPeliculas actualizarPeliculas = new ActualizarPeliculas();
     actualizarPeliculas.setPelicula(pelicula);
     actualizarPeliculas.setVisible(true);
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-     int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres borrar esta película?", "Confirmar borrado", JOptionPane.YES_NO_OPTION);
-        BorrarUtil util = new BorrarUtil();
-     if (confirmacion == JOptionPane.YES_OPTION) {
-        // Llamar al método para eliminar la película por su ID
+    int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres borrar esta película?", "Confirmar borrado", JOptionPane.YES_NO_OPTION);
+    BorrarUtil util = new BorrarUtil();
+    if (confirmacion == JOptionPane.YES_OPTION) {
+        
         util.borrarPeliculaPorId(idPelicula);
         
-        // Actualizar la interfaz gráfica, por ejemplo, ocultando este panel
-        this.setVisible(false);
     }
     }//GEN-LAST:event_botonBorrarActionPerformed
 
