@@ -6,8 +6,10 @@ package view;
 
 import controller.ActualizarUtil;
 import controller.listarPeliculasUtil;
+import controller.loginUtil;
 import java.sql.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import model.Peliculas;
 
 /**
@@ -15,12 +17,14 @@ import model.Peliculas;
  * @author alexg
  */
 public class ActualizarPeliculas extends javax.swing.JFrame {
-
+    listarPeliculasUtil listar = new listarPeliculasUtil();
+    loginUtil login = new loginUtil();
     /**
      * Creates new form ActualizarPeliculas
      */
     public ActualizarPeliculas() {
         initComponents();
+        
     }
 
     /**
@@ -135,20 +139,27 @@ public class ActualizarPeliculas extends javax.swing.JFrame {
     Date fecha = Date.valueOf(txtFecha.getText());
     String nuevoResumen = txtAreaResumen.getText();
     String genero = txtGenero1.getSelectedItem().toString();
-    
+    int id = login.getIdUsuarioActual();
     ActualizarUtil.actualizarPelicula(pelicula, nuevoTitulo, nuevoDirector, fecha, nuevoResumen, genero);
+    
+    ListarPeliculas listarPeliculas = new ListarPeliculas();
+    JPanel panelListarPeliculas = listarPeliculas.obtenerPanelPeliculas();
+    
+    listar.mostrarPeliculas(panelListarPeliculas, id);
+    
+    dispose();
     }//GEN-LAST:event_btnCambiarActionPerformed
         private Peliculas pelicula;
 
         public void setPelicula(Peliculas pelicula) {
             this.pelicula = pelicula;
-            // Llenar los campos con los datos de la película
+            
             txtTitulo.setText(pelicula.getTituloPelicula());
             txtDirector.setText(pelicula.getDirectorPelicula());
             txtFecha.setText(String.valueOf(pelicula.getFechaPelicula()));
             txtAreaResumen.setText(pelicula.getResumenPelicula());
-            // Aquí puedes establecer el género si tienes una lista desplegable
-            // txtGenero.setSelectedItem(pelicula.getGeneroPelicula());
+
+            txtGenero1.setSelectedItem(pelicula.getGeneroPelicula());
         }
     /**
      * @param args the command line arguments
