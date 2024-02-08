@@ -5,14 +5,17 @@
 package controller;
 
 import java.awt.BorderLayout;
+import java.sql.Date;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import model.Anime;
 import model.Peliculas;
+import model.Resenas;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import view.PanelAnimes;
 import view.PanelPeliculas;
@@ -46,7 +49,7 @@ public class listarAnimeUtil {
         jpanel.add(jScrollPane, BorderLayout.CENTER);
     }
 
-    private List<Anime> obtenerAnimesDesdeBD(int idUsuario) {
+    public List<Anime> obtenerAnimesDesdeBD(int idUsuario) {
         // Recuperar datos de la base de datos usando HibernateUtil
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -85,6 +88,55 @@ public class listarAnimeUtil {
 
         return anime;
     }
-                  
+    public void guardarReseña(String tituloAnime, int valoracion, String comentario, Date fecha) {
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+
+    try {
+        tx = session.beginTransaction();
+
+        // Obtener la película por su título
+        Anime anime = obtenerAnimePorTitulo(tituloAnime);
+
+        // Crear una nueva instancia de Resena
+        Resenas resena = new Resenas();
+        resena.setAnime(anime);
+        resena.setValoracionResena(valoracion);
+        resena.setComentarioResena(comentario);
+        resena.setFechaResena(fecha); // Establecer la fecha de la reseña
+
+        // Guardar la reseña en la base de datos
+        session.save(resena);
+
+        tx.commit();
+    } catch (Exception e) {
+        if (tx != null) {
+            tx.rollback();
+        }
+        e.printStackTrace();
+    } finally {
+        session.close();
+    }
+    
+}
+        public Anime obtenerAnimePorTitulo(String tituloAnime) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        Anime anime = null;
+        try {
+            // Query para obtener la película por su título
+            Query<Anime> query = session.createQuery("FROM Anime WHERE tituloAnime = :titulo", Anime.class);
+            query.setParameter("titulo", tituloAnime);
+            anime = query.uniqueResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return anime;
+    }           
     
 }

@@ -4,16 +4,25 @@
  */
 package view;
 
+import controller.listarAnimeUtil;
+import controller.listarPeliculasUtil;
+import controller.loginUtil;
+import java.sql.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import model.Anime;
+import model.Peliculas;
+
 /**
  *
  * @author Alumno
  */
-public class resena extends javax.swing.JFrame {
+public class resenaAnime extends javax.swing.JFrame {
 
     /**
      * Creates new form resena
      */
-    public resena() {
+    public resenaAnime() {
         initComponents();
     }
 
@@ -35,6 +44,7 @@ public class resena extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        lblSlidder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +62,14 @@ public class resena extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel2.setText("Tu valoracion:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+
+        jSlider1.setMaximum(10);
+        jSlider1.setValue(5);
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
         jPanel1.add(jSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -69,7 +87,16 @@ public class resena extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Añadir");
         jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 510, 160, 40));
+
+        lblSlidder.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblSlidder.setText("5");
+        jPanel1.add(lblSlidder, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 60, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,6 +112,34 @@ public class resena extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    String Animeseleccionado = jComboBox1.getSelectedItem().toString();
+    int valoracion = jSlider1.getValue();
+    String comentario = jTextArea1.getText();
+    Date fechaActual = new Date(System.currentTimeMillis());
+    
+    listarAnimeUtil util = new listarAnimeUtil();
+    util.guardarReseña(Animeseleccionado, valoracion, comentario, fechaActual);
+    JOptionPane.showMessageDialog(this, "Reseña añadida con exito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+      lblSlidder.setText(Integer.toString(jSlider1.getValue()));
+    }//GEN-LAST:event_jSlider1StateChanged
+public void cargarAnime() {
+    listarAnimeUtil util = new listarAnimeUtil();
+    loginUtil id = new loginUtil();
+    List<Anime> anime = util.obtenerAnimesDesdeBD(id.idUsuarioActual);
+
+    // Limpiar el JComboBox antes de agregar nuevos elementos
+    jComboBox1.removeAllItems();
+
+    // Agregar los títulos de las películas al JComboBox
+    for (Anime animes : anime) {
+        jComboBox1.addItem(animes.getTituloAnime());
+    }
+}
     /**
      * @param args the command line arguments
      */
@@ -102,20 +157,23 @@ public class resena extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(resena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(resenaAnime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(resena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(resenaAnime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(resena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(resenaAnime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(resena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(resenaAnime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new resena().setVisible(true);
+                new resenaAnime().setVisible(true);
             }
         });
     }
@@ -130,5 +188,6 @@ public class resena extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblSlidder;
     // End of variables declaration//GEN-END:variables
 }

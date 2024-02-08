@@ -99,6 +99,11 @@ public class PanelSeries extends javax.swing.JPanel {
         jPanel1.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 65, 45, 45));
 
         botonMensaje.setBackground(new java.awt.Color(255, 51, 51));
+        botonMensaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMensajeActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, 45, 45));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -120,6 +125,9 @@ public class PanelSeries extends javax.swing.JPanel {
     ActualizarSeries actualizarSeries = new ActualizarSeries();
     actualizarSeries.setSeries(series);
     actualizarSeries.setVisible(true);
+    
+    actualizarSeries.setLocationRelativeTo(this);
+    actualizarSeries.setVisible(true);
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
@@ -131,6 +139,15 @@ public class PanelSeries extends javax.swing.JPanel {
         
     }
     }//GEN-LAST:event_botonBorrarActionPerformed
+
+    private void botonMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMensajeActionPerformed
+    resenaSerie formularioResena = new resenaSerie();
+    formularioResena.setVisible(true);
+    formularioResena.setLocationRelativeTo(null);
+    
+
+    formularioResena.cargarSeries();
+    }//GEN-LAST:event_botonMensajeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

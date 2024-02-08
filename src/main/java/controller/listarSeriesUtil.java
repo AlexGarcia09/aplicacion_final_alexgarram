@@ -5,13 +5,16 @@
 package controller;
 
 import java.awt.BorderLayout;
+import java.sql.Date;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import model.Resenas;
 import model.Series;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import view.PanelSeries;
 
@@ -21,7 +24,7 @@ import view.PanelSeries;
  */
 public class listarSeriesUtil {
     
-    private List<Series> obtenerSeriesDesdeBD(int idUsuario) {
+    public List<Series> obtenerSeriesDesdeBD(int idUsuario) {
         // Recuperar datos de la base de datos usando HibernateUtil
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -81,5 +84,54 @@ public class listarSeriesUtil {
 
         return series;
     }
+    public void guardarReseña(String tituloSerie, int valoracion, String comentario, Date fecha) {
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+
+    try {
+        tx = session.beginTransaction();
+
+        // Obtener la película por su título
+        Series serie = obtenerSeriePorTitulo(tituloSerie);
+
+        // Crear una nueva instancia de Resena
+        Resenas resena = new Resenas();
+        resena.setSeries(serie);
+        resena.setValoracionResena(valoracion);
+        resena.setComentarioResena(comentario);
+        resena.setFechaResena(fecha); // Establecer la fecha de la reseña
+
+        // Guardar la reseña en la base de datos
+        session.save(resena);
+
+        tx.commit();
+    } catch (Exception e) {
+        if (tx != null) {
+            tx.rollback();
+        }
+        e.printStackTrace();
+    } finally {
+        session.close();
+    }
     
+}
+        public Series obtenerSeriePorTitulo(String tituloPelicula) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        Series serie = null;
+        try {
+            // Query para obtener la película por su título
+            Query<Series> query = session.createQuery("FROM Series WHERE tituloSerie = :titulo", Series.class);
+            query.setParameter("titulo", tituloPelicula);
+            serie = query.uniqueResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return serie;
+    }
 }

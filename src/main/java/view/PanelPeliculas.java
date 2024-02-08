@@ -123,6 +123,11 @@ public class PanelPeliculas extends javax.swing.JPanel {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1075, 0, 3, 180));
 
         botonMensaje.setBackground(new java.awt.Color(255, 51, 51));
+        botonMensaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMensajeActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, 45, 45));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -144,6 +149,8 @@ public class PanelPeliculas extends javax.swing.JPanel {
     ActualizarPeliculas actualizarPeliculas = new ActualizarPeliculas();
     actualizarPeliculas.setPelicula(pelicula);
     actualizarPeliculas.setVisible(true);
+       actualizarPeliculas.setLocationRelativeTo(this);
+            actualizarPeliculas.setVisible(true);
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
@@ -155,6 +162,15 @@ public class PanelPeliculas extends javax.swing.JPanel {
         
     }
     }//GEN-LAST:event_botonBorrarActionPerformed
+
+    private void botonMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMensajeActionPerformed
+     resenaPelicula formularioResena = new resenaPelicula();
+    formularioResena.setVisible(true);
+    formularioResena.setLocationRelativeTo(null);
+    
+    // Llamada al método para cargar las películas en el JComboBox del formulario resenaPelicula
+    formularioResena.cargarPeliculas();
+    }//GEN-LAST:event_botonMensajeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

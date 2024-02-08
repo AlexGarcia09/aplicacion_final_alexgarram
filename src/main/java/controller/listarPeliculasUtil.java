@@ -5,13 +5,18 @@
 package controller;
 
 import java.awt.BorderLayout;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import model.Peliculas;
+import model.Resenas;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import view.PanelPeliculas;
 
@@ -21,7 +26,7 @@ import view.PanelPeliculas;
  */
 public class listarPeliculasUtil {
     
-    private List<Peliculas> obtenerPeliculasDesdeBD(int idUsuario) {
+    public List<Peliculas> obtenerPeliculasDesdeBD(int idUsuario) {
         // Recuperar datos de la base de datos usando HibernateUtil
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
@@ -71,6 +76,57 @@ public class listarPeliculasUtil {
         Peliculas pelicula = query.uniqueResult();
 
         session.close();
+
+        return pelicula;
+    }
+     
+ public void guardarReseña(String tituloPelicula, int valoracion, String comentario, Date fecha) {
+    SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+
+    try {
+        tx = session.beginTransaction();
+
+        // Obtener la película por su título
+        Peliculas pelicula = obtenerPeliculaPorTitulo(tituloPelicula);
+
+        // Crear una nueva instancia de Resena
+        Resenas resena = new Resenas();
+        resena.setPeliculas(pelicula);
+        resena.setValoracionResena(valoracion);
+        resena.setComentarioResena(comentario);
+        resena.setFechaResena(fecha); // Establecer la fecha de la reseña
+
+        // Guardar la reseña en la base de datos
+        session.save(resena);
+
+        tx.commit();
+    } catch (Exception e) {
+        if (tx != null) {
+            tx.rollback();
+        }
+        e.printStackTrace();
+    } finally {
+        session.close();
+    }
+    
+}
+        public Peliculas obtenerPeliculaPorTitulo(String tituloPelicula) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        Peliculas pelicula = null;
+        try {
+            // Query para obtener la película por su título
+            Query<Peliculas> query = session.createQuery("FROM Peliculas WHERE tituloPelicula = :titulo", Peliculas.class);
+            query.setParameter("titulo", tituloPelicula);
+            pelicula = query.uniqueResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
 
         return pelicula;
     }

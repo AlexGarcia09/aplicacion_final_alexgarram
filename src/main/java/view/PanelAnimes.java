@@ -7,10 +7,12 @@ package view;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.BorrarUtil;
 import controller.listarAnimeUtil;
+import controller.listarPeliculasUtil;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import model.Anime;
+import model.Peliculas;
 
 /**
  *
@@ -99,6 +101,11 @@ public class PanelAnimes extends javax.swing.JPanel {
         jPanel1.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 65, 45, 45));
 
         botonMensaje.setBackground(new java.awt.Color(255, 51, 51));
+        botonMensaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMensajeActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, 45, 45));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -109,17 +116,22 @@ public class PanelAnimes extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         listarAnimeUtil util = new listarAnimeUtil();
     Anime anime = util.obtenerAnimePorId(idAnime);
-    
+            
+
+
         ActualizarAnime actualizarAnime = new ActualizarAnime();
     actualizarAnime.setAnime(anime);
     actualizarAnime.setVisible(true);
+    
+    actualizarAnime.setLocationRelativeTo(this);
+            actualizarAnime.setVisible(true);
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
@@ -131,6 +143,16 @@ public class PanelAnimes extends javax.swing.JPanel {
         
     }
     }//GEN-LAST:event_botonBorrarActionPerformed
+
+    private void botonMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMensajeActionPerformed
+      resenaAnime formularioResena = new resenaAnime();
+    formularioResena.setVisible(true);
+    formularioResena.setLocationRelativeTo(null);
+    
+    // Llamada al método para cargar las películas en el JComboBox del formulario resenaPelicula
+    formularioResena.cargarAnime();
+
+    }//GEN-LAST:event_botonMensajeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

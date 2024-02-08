@@ -13,7 +13,7 @@
             <column name="id_anime"/>
         </many-to-one>
         <many-to-one class="model.Peliculas" fetch="select" name="peliculas">
-            <column name="id_pelicula" not-null="true" unique="true"/>
+            <column name="id_pelicula"/>
         </many-to-one>
         <property name="valoracionResena" type="int">
             <column name="valoracion_resena" not-null="true"/>
