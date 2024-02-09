@@ -7,6 +7,7 @@ package controller;
 import javax.swing.JOptionPane;
 import model.Anime;
 import model.Peliculas;
+import model.Resenas;
 import model.Series;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -100,6 +101,31 @@ public class BorrarUtil {
             borrarAnime(anime);
         } else {
             JOptionPane.showMessageDialog(null, "El anime con ID " + idAnime + " no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+        public static void borrarResenaPorId(int idResena) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            // Obtener la reseña por su ID
+            Resenas resena = session.get(Resenas.class, idResena);
+            if (resena != null) {
+                session.delete(resena);
+                tx.commit();
+                JOptionPane.showMessageDialog(null, "Reseña borrada correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La reseña con ID " + idResena + " no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al borrar la reseña: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            session.close();
         }
     }
     

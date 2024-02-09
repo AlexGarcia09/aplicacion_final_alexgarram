@@ -77,12 +77,17 @@ public class PanelAnimes extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel3.setText("Resumen:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, 83, 31));
-        jPanel1.add(lblEstudio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 344, 31));
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 344, 31));
+
+        lblEstudio.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jPanel1.add(lblEstudio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 43, 344, 31));
+
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 5, 344, 31));
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 26, 344, 31));
 
+        txtResumen.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtResumen.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(txtResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 670, 90));
+        jPanel1.add(txtResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 85, 670, 60));
 
         botonBorrar.setBackground(new java.awt.Color(255, 51, 51));
         botonBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +95,7 @@ public class PanelAnimes extends javax.swing.JPanel {
                 botonBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 120, 45, 45));
+        jPanel1.add(botonBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 110, 45, 45));
 
         botonActualizar.setBackground(new java.awt.Color(255, 51, 51));
         botonActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +103,7 @@ public class PanelAnimes extends javax.swing.JPanel {
                 botonActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 65, 45, 45));
+        jPanel1.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 60, 45, 45));
 
         botonMensaje.setBackground(new java.awt.Color(255, 51, 51));
         botonMensaje.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +111,7 @@ public class PanelAnimes extends javax.swing.JPanel {
                 botonMensajeActionPerformed(evt);
             }
         });
-        jPanel1.add(botonMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, 45, 45));
+        jPanel1.add(botonMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 10, 45, 45));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -116,7 +121,7 @@ public class PanelAnimes extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

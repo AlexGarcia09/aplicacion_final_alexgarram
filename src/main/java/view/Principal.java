@@ -248,7 +248,12 @@ public class Principal extends javax.swing.JFrame {
         listarSeries.setLocation(0,0);
         
         llamarpanel(listarSeries); 
-        }else {
+        }else if(botonResenas.isSelected()){
+        listarResenasSeriesp listarresenaSeries = new listarResenasSeriesp();
+        listarresenaSeries.setSize(1144, 797);
+        listarresenaSeries.setLocation(0,0);
+        
+        llamarpanel(listarresenaSeries);
             
         }
     }//GEN-LAST:event_botonSeriesActionPerformed
@@ -269,6 +274,13 @@ public class Principal extends javax.swing.JFrame {
         listarPeliculas.setLocation(0,0);
         
         llamarpanel(listarPeliculas);
+        }else if (botonResenas.isSelected()){
+        
+        listarResenasPeliculasp listarresenaPeliculas = new listarResenasPeliculasp();
+        listarresenaPeliculas.setSize(1144, 797);
+        listarresenaPeliculas.setLocation(0,0);
+        
+        llamarpanel(listarresenaPeliculas);
         }
     }//GEN-LAST:event_botonPeliculasActionPerformed
 
@@ -288,7 +300,13 @@ public class Principal extends javax.swing.JFrame {
         listarAnime.setLocation(0,0);
         
         llamarpanel(listarAnime);
-        }
+        }else if(botonResenas.isSelected()){
+          listarResenasAnimep listarresenaAnime = new listarResenasAnimep();
+        listarresenaAnime.setSize(1144, 797);
+        listarresenaAnime.setLocation(0,0);
+        
+        llamarpanel(listarresenaAnime);
+     }
     }//GEN-LAST:event_botonAnimeActionPerformed
 
     private void botonAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnadirActionPerformed
@@ -316,7 +334,27 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAnadirActionPerformed
 
     private void botonResenasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonResenasActionPerformed
-      
+      if (botonPeliculas.isSelected()){
+        
+        listarResenasPeliculasp listarresenaPeliculas = new listarResenasPeliculasp();
+        listarresenaPeliculas.setSize(1144, 797);
+        listarresenaPeliculas.setLocation(0,0);
+        
+        llamarpanel(listarresenaPeliculas);
+     }else if(botonSeries.isSelected()){
+        listarResenasSeriesp listarresenaSeries = new listarResenasSeriesp();
+        listarresenaSeries.setSize(1144, 797);
+        listarresenaSeries.setLocation(0,0);
+        
+        llamarpanel(listarresenaSeries);
+         
+     }else if(botonAnime.isSelected()){
+         listarResenasAnimep listarresenaAnime = new listarResenasAnimep();
+        listarresenaAnime.setSize(1144, 797);
+        listarresenaAnime.setLocation(0,0);
+        
+        llamarpanel(listarresenaAnime);
+     }
     }//GEN-LAST:event_botonResenasActionPerformed
 
     private void botonSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSesionActionPerformed

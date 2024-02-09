@@ -142,7 +142,17 @@ public class login extends javax.swing.JFrame {
         });
         Left.add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 755, 90, 30));
 
-        txtPasswrd.setText("jPasswordField2");
+        txtPasswrd.setText("Contraseña");
+        txtPasswrd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPasswrdFocusLost(evt);
+            }
+        });
+        txtPasswrd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPasswrdMouseClicked(evt);
+            }
+        });
         Left.add(txtPasswrd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 350, 40));
 
         btnRecordar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -227,6 +237,19 @@ public class login extends javax.swing.JFrame {
             botonVerpass.setIcon(new FlatSVGIcon("img/ojonoVer.svg",20,20));
         }
     }//GEN-LAST:event_botonVerpassActionPerformed
+
+    private void txtPasswrdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswrdFocusLost
+     if(txtPasswrd.getPassword().length==0){
+         txtPasswrd.setText("Contraseña");
+     }
+    }//GEN-LAST:event_txtPasswrdFocusLost
+
+    private void txtPasswrdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswrdMouseClicked
+    String passwordIngresada = new String(txtPasswrd.getPassword());
+    if(passwordIngresada.equals("Contraseña")) {
+    txtPasswrd.setText("");
+}
+    }//GEN-LAST:event_txtPasswrdMouseClicked
     private void abrirVentanaRegistro() {
         registro registroFrame = new registro();
 

@@ -4,6 +4,8 @@
  */
 package view;
 
+import controller.ListarResenasAnime;
+import controller.ListarResenasPeliculas;
 import controller.listarPeliculasUtil;
 import controller.loginUtil;
 import javax.swing.JPanel;
@@ -13,26 +15,26 @@ import javax.swing.JPanel;
  *
  * @author Alumno
  */
-public class ListarPeliculas extends javax.swing.JPanel {
+public class listarResenasAnimep extends javax.swing.JPanel {
 
     /**
      * Creates new form ListarPeliculas
      */
-    listarPeliculasUtil listar = new listarPeliculasUtil();
+    ListarResenasAnime listar = new ListarResenasAnime();
     loginUtil login = new loginUtil();
     
-    public ListarPeliculas() {
+    public listarResenasAnimep() {
         initComponents();
         int id = login.getIdUsuarioActual();
         
-        listar.mostrarPeliculas(panelListarPeliculas, id);
+        listar.mostrarResenas(panelListarresenasAnime);
           
     }
     
 
 
     public JPanel obtenerPanelPeliculas() {
-        return panelListarPeliculas;
+        return panelListarresenasAnime;
     }
 
 
@@ -49,18 +51,25 @@ public class ListarPeliculas extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        panelListarPeliculas = new javax.swing.JPanel();
+        panelListarresenasAnime = new javax.swing.JPanel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        panelListarPeliculas.setLayout(new javax.swing.BoxLayout(panelListarPeliculas, javax.swing.BoxLayout.Y_AXIS));
-        jScrollPane1.setViewportView(panelListarPeliculas);
+        panelListarresenasAnime.setLayout(new javax.swing.BoxLayout(panelListarresenasAnime, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(panelListarresenasAnime);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 730));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+        );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 730));
     }// </editor-fold>//GEN-END:initComponents
@@ -69,7 +78,7 @@ public class ListarPeliculas extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel panelListarPeliculas;
+    private javax.swing.JPanel panelListarresenasAnime;
     // End of variables declaration//GEN-END:variables
 }
 

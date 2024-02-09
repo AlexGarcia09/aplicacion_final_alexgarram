@@ -11,33 +11,36 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import model.Peliculas;
+import model.Resenas;
 
 /**
  *
  * @author Alumno
  */
-public class PanelPeliculas extends javax.swing.JPanel {
-    private int idPelicula;
+public class PanelResenaA extends javax.swing.JPanel {
+    private int idresena;
     /**
      * Creates new form PanelPeliculas
      */
-    public PanelPeliculas(int idPelicula) {
+    public PanelResenaA(int idresena) {
         initComponents();
-        this.idPelicula = idPelicula;
+         this.idresena = idresena;
         botonBorrar.setIcon(new FlatSVGIcon("img/borrar.svg",35,35));
-        botonActualizar.setIcon(new FlatSVGIcon("img/actualizar.svg",35,35));
-        botonMensaje.setIcon(new FlatSVGIcon("img/mensaje.svg",35,35));
+       
     }
     public JLabel getlblTitulo() {
         return lblTitulo;
     }
 
-    public JLabel getlblDirector() {
-        return lblDirector;
+    public JLabel getlblValoracion() {
+        return lblValoracion;
     }
 
     public JLabel gettxtResumen() {
-        return txtResumen;
+        return txtcomentario;
+    }
+    public JLabel gettxtfecha() {
+        return txtfecha;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,54 +52,47 @@ public class PanelPeliculas extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        botonActualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblDirector = new javax.swing.JLabel();
+        lblValoracion = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
-        txtResumen = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtcomentario = new javax.swing.JLabel();
         botonBorrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        botonMensaje = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtfecha = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51), 3));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1065, 166));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        botonActualizar.setBackground(new java.awt.Color(255, 51, 51));
-        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonActualizarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 60, 45, 45));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("Titulo:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 59, 31));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel2.setText("Director:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 43, 74, 31));
+        jLabel2.setText("Valoracion:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 43, 90, 31));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel3.setText("Resumen:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, 83, 31));
+        jLabel3.setText("Comentario:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 117, 130, 31));
 
-        lblDirector.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblDirector.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        jPanel1.add(lblDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 43, 344, 31));
+        lblValoracion.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblValoracion.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        jPanel1.add(lblValoracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 43, 344, 31));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTitulo.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 5, 344, 31));
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 5, 344, 31));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 26, 344, 31));
 
-        txtResumen.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        txtResumen.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        txtResumen.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(txtResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 85, 890, 90));
+        txtcomentario.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtcomentario.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        txtcomentario.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(txtcomentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 122, 870, 30));
 
         botonBorrar.setBackground(new java.awt.Color(255, 51, 51));
         botonBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -121,21 +117,20 @@ public class PanelPeliculas extends javax.swing.JPanel {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1075, 0, 3, 180));
 
-        botonMensaje.setBackground(new java.awt.Color(255, 51, 51));
-        botonMensaje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonMensajeActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 10, 45, 45));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel4.setText("Fecha:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, 83, 31));
+
+        txtfecha.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtfecha.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        txtfecha.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(txtfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 85, 490, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1065, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,48 +138,27 @@ public class PanelPeliculas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-    listarPeliculasUtil util = new listarPeliculasUtil();
-    Peliculas pelicula = util.obtenerPeliculaPorId(idPelicula);
-    
-    ActualizarPeliculas actualizarPeliculas = new ActualizarPeliculas();
-    actualizarPeliculas.setPelicula(pelicula);
-    actualizarPeliculas.setVisible(true);
-       actualizarPeliculas.setLocationRelativeTo(this);
-            actualizarPeliculas.setVisible(true);
-    }//GEN-LAST:event_botonActualizarActionPerformed
-
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
-    int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres borrar esta película?", "Confirmar borrado", JOptionPane.YES_NO_OPTION);
-    BorrarUtil util = new BorrarUtil();
-    if (confirmacion == JOptionPane.YES_OPTION) {
-        
-        util.borrarPeliculaPorId(idPelicula);
-        
-    }
+   int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres borrar esta reseña?", "Confirmar borrado", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            BorrarUtil util = new BorrarUtil();
+            util.borrarResenaPorId(idresena);
+        }
     }//GEN-LAST:event_botonBorrarActionPerformed
-
-    private void botonMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMensajeActionPerformed
-     resenaPelicula formularioResena = new resenaPelicula();
-    formularioResena.setVisible(true);
-    formularioResena.setLocationRelativeTo(null);
-    
-    // Llamada al método para cargar las películas en el JComboBox del formulario resenaPelicula
-    formularioResena.cargarPeliculas();
-    }//GEN-LAST:event_botonMensajeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonActualizar;
     private javax.swing.JButton botonBorrar;
-    private javax.swing.JButton botonMensaje;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblDirector;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel txtResumen;
+    private javax.swing.JLabel lblValoracion;
+    private javax.swing.JLabel txtcomentario;
+    private javax.swing.JLabel txtfecha;
     // End of variables declaration//GEN-END:variables
 }

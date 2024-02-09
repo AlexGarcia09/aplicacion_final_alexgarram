@@ -4,14 +4,10 @@
  */
 package controller;
 
-import java.awt.BorderLayout;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 import javax.swing.BoxLayout;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import model.Peliculas;
 import model.Resenas;
 import org.hibernate.Session;
@@ -43,22 +39,22 @@ public class listarPeliculasUtil {
     }
     
     
-        public void mostrarPeliculas(JPanel jPanel, int idUsuario) {
-            List<Peliculas> peliculas = obtenerPeliculasDesdeBD(idUsuario);
+    public void mostrarPeliculas(JPanel jPanel, int idUsuario) {
+        List<Peliculas> peliculas = obtenerPeliculasDesdeBD(idUsuario);
 
-            jPanel.removeAll();
+        jPanel.removeAll();
 
-            JPanel panelPeliculas = new JPanel();
-            panelPeliculas.setLayout(new BoxLayout(panelPeliculas, BoxLayout.Y_AXIS));
+        JPanel panelPeliculas = new JPanel();
+        panelPeliculas.setLayout(new BoxLayout(panelPeliculas, BoxLayout.Y_AXIS));
 
-            for (Peliculas pelicula : peliculas) {
-                PanelPeliculas panelPelicula = new PanelPeliculas(pelicula.getId());
-                llenarPanelConPelicula(panelPelicula, pelicula);
-                panelPeliculas.add(panelPelicula);
-            }
-            jPanel.add(panelPeliculas);
+        for (Peliculas pelicula : peliculas) {
+            PanelPeliculas panelPelicula = new PanelPeliculas(pelicula.getId());
+            llenarPanelConPelicula(panelPelicula, pelicula);
+            panelPeliculas.add(panelPelicula);
         }
-    
+        jPanel.add(panelPeliculas);
+    }
+
     
         private void llenarPanelConPelicula(PanelPeliculas panelPeliculas, Peliculas pelicula) {
         panelPeliculas.getlblTitulo().setText(pelicula.getTituloPelicula());

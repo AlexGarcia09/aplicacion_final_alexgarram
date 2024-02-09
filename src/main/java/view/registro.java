@@ -158,10 +158,35 @@ public class registro extends javax.swing.JFrame {
         jLabel3.setText("REGISTRO");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
 
-        txtPasswrd.setText("jPasswordField2");
+        txtPasswrd.setText("Contraseña");
+        txtPasswrd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPasswrdFocusLost(evt);
+            }
+        });
+        txtPasswrd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPasswrdMouseClicked(evt);
+            }
+        });
+        txtPasswrd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswrdActionPerformed(evt);
+            }
+        });
         jPanel3.add(txtPasswrd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 350, 40));
 
-        txtPasswrdRep.setText("jPasswordField2");
+        txtPasswrdRep.setText("Contraseña");
+        txtPasswrdRep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPasswrdRepFocusLost(evt);
+            }
+        });
+        txtPasswrdRep.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPasswrdRepMouseClicked(evt);
+            }
+        });
         jPanel3.add(txtPasswrdRep, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, 350, 40));
 
         jLabel9.setBackground(new java.awt.Color(102, 102, 102));
@@ -244,6 +269,36 @@ public class registro extends javax.swing.JFrame {
             botonVerpassRep.setIcon(new FlatSVGIcon("img/ojonoVer.svg",20,20));
         }
     }//GEN-LAST:event_botonVerpassRepActionPerformed
+
+    private void txtPasswrdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswrdMouseClicked
+String passwordIngresada = new String(txtPasswrd.getPassword());
+    if(passwordIngresada.equals("Contraseña")) {
+    txtPasswrd.setText("");
+}
+    }//GEN-LAST:event_txtPasswrdMouseClicked
+
+    private void txtPasswrdRepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswrdRepMouseClicked
+    String passwordIngresada = new String(txtPasswrdRep.getPassword());
+    if(passwordIngresada.equals("Contraseña")) {
+    txtPasswrdRep.setText("");
+}
+    }//GEN-LAST:event_txtPasswrdRepMouseClicked
+
+    private void txtPasswrdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswrdFocusLost
+          if(txtPasswrd.getPassword().length==0){
+         txtPasswrd.setText("Contraseña");
+     }
+    }//GEN-LAST:event_txtPasswrdFocusLost
+
+    private void txtPasswrdRepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswrdRepFocusLost
+          if(txtPasswrdRep.getPassword().length==0){
+         txtPasswrdRep.setText("Contraseña");
+     }
+    }//GEN-LAST:event_txtPasswrdRepFocusLost
+
+    private void txtPasswrdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswrdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswrdActionPerformed
         private void abrirVentanaLogin() {
             
         login loginFrame = new login();
